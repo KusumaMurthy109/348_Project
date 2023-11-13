@@ -10,6 +10,7 @@ void tokenizer_input(const string& UserInput)
     vector<string> tokenizer_vector;
     for (int i = 0; i < UserInput.length(); i++){
 
+        //this is only accomidating if there is a space at index 0 ,but its not working for the rest of the test cases
         if ((UserInput[i] == ' ') || (UserInput[i] == '\0')){
             continue;
         }
@@ -107,8 +108,6 @@ void tokenizer_input(const string& UserInput)
 
 
     }
-
-
     //Iterates through the vector and shows what is stored inside of it, th sis only for the purpose of testing our code
     for (int i = 0; i < tokenizer_vector.size(); i ++){
         cout << tokenizer_vector[i] << endl;

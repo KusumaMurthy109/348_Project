@@ -9,6 +9,7 @@ int main(){
     string UserInput;
 
     cout << "Enter you expression: ";
+    cin.ignore();
     cin >> UserInput;
 
     tokenizer_input(UserInput);

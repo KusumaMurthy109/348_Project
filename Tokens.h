@@ -1,6 +1,7 @@
-//tokenizer template
+// tokenizer template
 
 #ifndef TOKENS_H
+
 #define TOKENS_H
 
 #include <vector>
@@ -9,10 +10,8 @@
 using namespace std;
 class Tokens
 {
-    public:
-        vector<string> tokenizer_input(const string& UserInput);
-
+public:
+    vector<string> tokenizer_input(const string &UserInput);
 };
-
 
 #endif

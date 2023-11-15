@@ -5,19 +5,18 @@ using namespace std;
 #ifndef EVALUATE_H
 #define EVALUATE_H
 
-
-//Note: intially assume that inputs are integers
+// Note: intially assume that inputs are integers
 class Evaluate
 {
-  public:
-  vector<char> expression; //vector
 
+public:
+  vector<char> expression; // vector
 
-  //private:
+  // private:
   bool isOperator(string c);
   int getPrecedence(char op);
-  double evaluateExpression(const vector<string>& expression);
-  double evaluateRemainding(stack<double> & operands, stack<char> & operators);
+  double evaluateExpression(const vector<string> &expression);
+  double evaluateRemainding(stack<double> &operands, stack<char> &operators);
   /*
   void CreateStack(vector<char> expression, stack<char>* operators, stack<double>* operands);
   bool isOperator(char expression);

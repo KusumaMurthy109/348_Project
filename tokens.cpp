@@ -97,6 +97,37 @@ void tokenizer_input(const string& UserInput)
             }
         }
 
+//accounts for inputs which 2 consecutive symbols, eg: 1++3 or +2^-3
+        else if(UserInput[i] == '+' || UserInput[i] == '-' || UserInput[i] == '*' || 
+        UserInput[i] == '^' || UserInput[i] == '%' || UserInput[i] == '/'){
+
+                if((UserInput[i + 1] != '\0') && (UserInput[i + 1] == '-' || UserInput[i + 1] == '+')){
+                tokenizer_vector.push_back(UserInput.substr(i, 1));
+                if((UserInput[i + 2] != '\0') && (UserInput[i+2] == '0' || UserInput[i+2] == '1' || UserInput[i+2] == '2' || UserInput[i+2] == '3' || UserInput[i+2] == '4' || UserInput[i+2] == '5' || UserInput[i+2] == '6' || UserInput[i+2] == '7' || UserInput[i+2] == '8' || UserInput[i+2] == '9')){
+                    int j = 1;
+                    int k = i + 2;
+                    while ((UserInput[k] != '\0') && (UserInput[k] == '0' || 
+                    UserInput[k] == '1' || UserInput[k] == '2' || UserInput[k] == '3' || 
+                    UserInput[k] == '4' || UserInput[k] == '5' || UserInput[k] == '6' || 
+                    UserInput[k] == '7' || UserInput[k] == '8' || UserInput[k] == '9')){
+                        j++;
+                        k++;
+                    }
+
+                    tokenizer_vector.push_back(UserInput.substr(i+1, j));
+
+                    i = i + j;
+                }
+            }
+
+
+
+            else{
+                tokenizer_vector.push_back(UserInput.substr(i, 1));
+            }
+
+        }
+
 
 
 

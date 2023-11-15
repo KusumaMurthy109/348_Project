@@ -1,21 +1,22 @@
 //mian file
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include "tokens.h"
 
 using namespace std;
 
 int main(){
     string UserInput;
-
     cout << "Enter you expression: ";
-    cin.ignore();
-    cin >> UserInput;
+    getline(cin, UserInput);
+    UserInput.erase(std::remove_if(UserInput.begin(), UserInput.end(), ::isspace), UserInput.end());
 
     tokenizer_input(UserInput);
 
     return 0;
 }
+
 
 /*
 TO RUN THE CODE:

@@ -27,4 +27,5 @@ public:
   double Solve(vector<char> expression);
   */
 };
+
 #endif

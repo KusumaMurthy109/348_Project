@@ -1,13 +1,13 @@
 // tokenizer template
-
 #ifndef TOKENS_H
-
 #define TOKENS_H
 
 #include <vector>
 #include <string>
 #include <sstream>
+
 using namespace std;
+
 class Tokens
 {
 public:

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include "tokens.h"
+#include "Tokens.h"
 
 using namespace std;
 
@@ -12,7 +12,11 @@ int main(){
     getline(cin, UserInput);
     UserInput.erase(std::remove_if(UserInput.begin(), UserInput.end(), ::isspace), UserInput.end());
 
-    tokenizer_input(UserInput);
+    Tokens token;
+    vector<string> expression = token.tokenizer_input(UserInput);
+    for (int i = 0; i < expression.size(); i ++){
+        cout << expression[i] << endl;
+    }
 
     return 0;
 }

@@ -1,9 +1,11 @@
+#ifndef EVALUATE_H
+#define EVALUATE_H
+
 #include <iostream>
 #include <stack>
 #include <vector>
+
 using namespace std;
-#ifndef EVALUATE_H
-#define EVALUATE_H
 
 // Note: intially assume that inputs are integers
 class Evaluate

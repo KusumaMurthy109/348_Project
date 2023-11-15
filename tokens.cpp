@@ -9,7 +9,7 @@ using namespace std;
 vector<string> Tokens::tokenizer_input(const string &UserInput)
 {
     vector<string> tokenizer_vector;
-    for (int i = 0; i < UserInput.length(); i++)
+    for (unsigned int i = 0; i < UserInput.length(); i++)
     {
 
         // If there a number greater than 1 digit

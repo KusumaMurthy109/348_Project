@@ -2,11 +2,10 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
-#include "tokens.h"
+#include "Tokens.h"
 
 using namespace std;
-
-void tokenizer_input(const string& UserInput)
+vector<string> Tokens::tokenizer_input(const string& UserInput)
 {
     vector<string> tokenizer_vector;
     for (int i = 0; i < UserInput.length(); i++){
@@ -58,6 +57,10 @@ void tokenizer_input(const string& UserInput)
                 i = i + j -1;
             }
 
+            else{
+                tokenizer_vector.push_back(UserInput.substr(i, 1));
+            }
+
         }
 
 
@@ -97,7 +100,9 @@ void tokenizer_input(const string& UserInput)
         else if(UserInput[i] == '+' || UserInput[i] == '-' || UserInput[i] == '*' || 
         UserInput[i] == '^' || UserInput[i] == '%' || UserInput[i] == '/'){
 
-                if((UserInput[i + 1] != '\0') && (UserInput[i + 1] == '-' || UserInput[i + 1] == '+')){
+
+
+            if((UserInput[i + 1] != '\0') && (UserInput[i + 1] == '-' || UserInput[i + 1] == '+')){
                 tokenizer_vector.push_back(UserInput.substr(i, 1));
                 if((UserInput[i + 2] != '\0') && (UserInput[i+2] == '0' || UserInput[i+2] == '1' || UserInput[i+2] == '2' || UserInput[i+2] == '3' || UserInput[i+2] == '4' || UserInput[i+2] == '5' || UserInput[i+2] == '6' || UserInput[i+2] == '7' || UserInput[i+2] == '8' || UserInput[i+2] == '9' || UserInput[i+2] == '.')){
                     int j = 1;
@@ -113,6 +118,18 @@ void tokenizer_input(const string& UserInput)
                     tokenizer_vector.push_back(UserInput.substr(i+1, j));
 
                     i = i + j;
+                }
+
+
+                if((UserInput[i + 1] != '\0') && (UserInput[i + 1] == '-' || UserInput[i + 1] == '+')){
+
+                    if (UserInput[i + 1] == '-'){
+                        tokenizer_vector.push_back("-1");
+                        tokenizer_vector.push_back("*");
+                        i = i+1;
+
+                    }
+
                 }
             }
 
@@ -134,7 +151,14 @@ void tokenizer_input(const string& UserInput)
 
 
  //Iterates through the vector and shows what is stored inside of it, th sis only for the purpose of testing our code
+ /*
     for (int i = 0; i < tokenizer_vector.size(); i ++){
         cout << tokenizer_vector[i] << endl;
     }
+*/
+
+return tokenizer_vector;
+
+
+
 }

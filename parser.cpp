@@ -39,7 +39,20 @@ bool Parser::isExpr(string val)
 }
 bool Parser::isDigit(string val)
 {
-    return (val == "0" || val == "1" || val == "2" || val == "3" || val == "4" || val == "5" || val == "6" || val == "7" || val == "8" || val == "9");
+    bool is_digit = true;
+    for (unsigned int i = 0; i < val.length(); i++)
+    {
+        if (val[i] == '0' || val[i] == '1' || val[i] == '2' || val[i] == '3' || val[i] == '4' || val[i] == '5' || val[i] == '6' || val[i] == '7' || val[i] == '8' || val[i] == '9' || val[i] == '-' || val[i] == '+')
+        {
+            is_digit = true;
+        }
+        else
+        {
+            is_digit = false;
+            break;
+        }
+    }
+    return is_digit;
 }
 bool Parser::isValidCharacter(const vector<string> &expression)
 {
@@ -54,6 +67,7 @@ bool Parser::isValidCharacter(const vector<string> &expression)
     }
     return is_valid;
 }
+/*
 int main()
 {
     Parser ex1;
@@ -68,3 +82,4 @@ int main()
         cout << "All good" << endl;
     }
 }
+*/

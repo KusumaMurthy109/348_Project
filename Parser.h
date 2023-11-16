@@ -12,7 +12,9 @@ class Parser
 {
 public:
     bool isValidCharacter(const vector<string> &expression);
-    bool isFloat(string val);
+    bool isFloat(string val); // helper
+    bool isExpr(string val);  // helper
+    bool isDigit(string val); // helper
 };
 
 #endif

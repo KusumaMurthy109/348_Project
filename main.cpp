@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "Tokens.h"
 #include "Evaluate.h"
+#include "Parser.h"
 
 using namespace std;
 
@@ -16,9 +17,20 @@ int main()
 
    Tokens token;
    Evaluate ex1;
+   Parser parser;
    vector<string> expression = token.tokenizer_input(UserInput);
-   double result = ex1.evaluateExpression(expression);
-   cout << result << endl;
+   bool parse = parser.goodInput(expression);
+   if (parse == 0)
+   {
+      cout << ("Bad input") << endl;
+   }
+   else
+   {
+      double result = ex1.evaluateExpression(expression);
+      cout << result << endl;
+   }
+   // double result = ex1.evaluateExpression(expression);
+   // cout << result << endl;
 
    return 0;
 }

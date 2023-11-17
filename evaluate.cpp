@@ -25,7 +25,6 @@ Function determines if a string is an operator and returns a bool.
     return c == "+" || c == "-" || c == "*" || c == "/" || c == "%" || c == "^";
 }
 
-
 int Evaluate::getPrecedence(char op)
 /*
 Function determines the precedence of operators and returns corresponding integer rank value.
@@ -52,7 +51,6 @@ Function determines the precedence of operators and returns corresponding intege
     }
 }
 
-
 double Evaluate::evaluateExpression(const vector<string> &expression)
 /*
 Function evaluates the input vector expression through the manipulation of a operands stack and a operators stack.
@@ -62,7 +60,7 @@ Operator precedence is consider and final answer is returned.
 {
     int index = 0;
     stack<double> operands; // initializes a stack for numbers
-    stack<char> operators; // initializes a stack for operators
+    stack<char> operators;  // initializes a stack for operators
 
     /*
     Iterates through each value of the vector expression, adds its corresponding stack, and performs evaluations throughout.
@@ -70,39 +68,39 @@ Operator precedence is consider and final answer is returned.
 
     for (const string &val : expression)
     {
-        //Case: val is a number
-        if (!isOperator(val) && (val[0] != '(') && (val[0] != ')')) 
+        // Case: val is a number
+        if (!isOperator(val) && (val[0] != '(') && (val[0] != ')'))
         {
-            double d1; // creates a variable of type double
+            double d1;               // creates a variable of type double
             stringstream(val) >> d1; // converts the string of a number into a double
-            operands.push(d1); // pushes number into operands stack
+            operands.push(d1);       // pushes number into operands stack
             index++;
         }
 
-        //Case: val is (
-        else if (val == "(") 
-        {                        
+        // Case: val is (
+        else if (val == "(")
+        {
             operators.push('('); // pushes '(' to operators stack
             index++;
         }
-        //Case: val is )
+        // Case: val is )
         else if (val == ")")
         {
             // Start evaluating expression until the ( parenthesis.
             while (!operators.empty() && operators.top() != '(')
             {
-                char op = operators.top(); // op is set to the operator at the top of the stack
-                operators.pop(); // operator is then removed from stack
+                char op = operators.top();        // op is set to the operator at the top of the stack
+                operators.pop();                  // operator is then removed from stack
                 double operand2 = operands.top(); // the right operand is set to the number at the top of the stack
-                operands.pop(); // operand is then removed from stack
+                operands.pop();                   // operand is then removed from stack
                 double operand1 = operands.top(); // the left operand is set to the number at the top of the stack
-                operands.pop(); // operand is then removed from stack
+                operands.pop();                   // operand is then removed from stack
 
                 if (op == '+')
                 {
                     operands.push(operand1 + operand2); // performs addition and pushes the sum onto the stack
                 }
-            
+
                 else if (op == '-')
                 {
                     operands.push(operand1 - operand2); // performs substraction and pushes the difference onto the stack
@@ -135,6 +133,12 @@ Operator precedence is consider and final answer is returned.
         }
         else if (isOperator(val) && index == 0 && val == "+")
         {
+            index++;
+        }
+        else if (isOperator(val) && (index == 0 || index == 1) && val == "-" && expression[1] == "-")
+        {
+            operands.push(-1);
+            operators.push('*');
             index++;
         }
         else if (isOperator(val) && index == 0 && val == "-")

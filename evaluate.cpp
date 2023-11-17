@@ -1,3 +1,10 @@
+/*
+Name: evaluate.cpp
+Purpose: Defines the Evaluate Class for Arithmetic Parser
+
+The code ...
+*/
+
 #include <iostream>
 #include <math.h>
 #include <cmath>
@@ -6,13 +13,24 @@
 #include <string>
 #include <vector>
 #include "Evaluate.h"
+
 using namespace std;
 
 bool Evaluate::isOperator(string c)
+/*
+Function determines if a string is an operator and returns a bool.
+*/
+
 {
     return c == "+" || c == "-" || c == "*" || c == "/" || c == "%" || c == "^";
 }
+
+
 int Evaluate::getPrecedence(char op)
+/*
+Function determines the precedence of operators and returns corresponding integer rank value.
+*/
+
 {
     if (op == '^')
     {
@@ -34,60 +52,85 @@ int Evaluate::getPrecedence(char op)
     }
 }
 
+
 double Evaluate::evaluateExpression(const vector<string> &expression)
+/*
+Function evaluates the input vector expression through the manipulation of a operands stack and a operators stack.
+Operator precedence is consider and final answer is returned.
+*/
+
 {
     int index = 0;
-    stack<double> operands;
-    stack<char> operators; // Initializes the two stacks one for the numbers and one for the operators (+,-, etc.)
+    stack<double> operands; // initializes a stack for numbers
+    stack<char> operators; // initializes a stack for operators
+
+    /*
+    Iterates through each value of the vector expression, adds its corresponding stack, and performs evaluations throughout.
+    */
+
     for (const string &val : expression)
     {
-        if (!isOperator(val) && val[0] != '(' && val[0] != ')')
+        //Case: val is a number
+        if (!isOperator(val) && (val[0] != '(') && (val[0] != ')')) 
         {
-            double d1;
-            stringstream(val) >> d1;
-            operands.push(d1);
+            double d1; // creates a variable of type double
+            stringstream(val) >> d1; // converts the string of a number into a double
+            operands.push(d1); // pushes number into operands stack
             index++;
         }
 
-        else if (val == "(")
-        {                        // Comparing string to string so double quotes.
-            operators.push('('); // Make it single quotes because it is a char.
+        //Case: val is (
+        else if (val == "(") 
+        {                        
+            operators.push('('); // pushes '(' to operators stack
             index++;
         }
+        //Case: val is )
         else if (val == ")")
         {
-            // Start evaluating until the ( parenthesis.
+            // Start evaluating expression until the ( parenthesis.
             while (!operators.empty() && operators.top() != '(')
             {
-                char op = operators.top();
-                operators.pop();
-                double operand2 = operands.top();
-                operands.pop();
-                double operand1 = operands.top();
-                operands.pop();
+                char op = operators.top(); // op is set to the operator at the top of the stack
+                operators.pop(); // operator is then removed from stack
+                double operand2 = operands.top(); // the right operand is set to the number at the top of the stack
+                operands.pop(); // operand is then removed from stack
+                double operand1 = operands.top(); // the left operand is set to the number at the top of the stack
+                operands.pop(); // operand is then removed from stack
 
                 if (op == '+')
-                    operands.push(operand1 + operand2);
+                {
+                    operands.push(operand1 + operand2); // performs addition and pushes the sum onto the stack
+                }
+            
                 else if (op == '-')
-                    operands.push(operand1 - operand2);
+                {
+                    operands.push(operand1 - operand2); // performs substraction and pushes the difference onto the stack
+                }
+
                 else if (op == '*')
-                    operands.push(operand1 * operand2);
+                {
+                    operands.push(operand1 * operand2); // perfoms multiplication and pushes the product onto the stack
+                }
+
                 else if (op == '/')
                 {
                     double new_operand = operand2;
                     double result = operand1 / new_operand;
-                    operands.push(result);
+                    operands.push(result); // pushes the quotient onto the stack
                 }
+
                 else if (op == '%')
                 {
                     long new_op1 = operand1;
                     long new_op2 = operand2;
-                    operands.push(new_op1 % new_op2);
+                    operands.push(new_op1 % new_op2); // pushes the remainder onto the stack
                 }
+
                 else if (op == '^')
-                    operands.push(pow(operand1, operand2));
+                    operands.push(pow(operand1, operand2)); // pushes the power onto the stack
             }
-            operators.pop(); // Remove the '('
+            operators.pop(); // removes '('
             index++;
         }
         else if (isOperator(val) && index == 0 && val == "+")

@@ -1,4 +1,10 @@
-// tokenizer.cpp
+/*
+Name: tokens.cpp
+Purpose: Defines the Token Class for Arithmetic Parser
+
+The code ...
+*/
+
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -7,6 +13,10 @@
 using namespace std;
 
 vector<string> Tokens::tokenizer_input(const string &UserInput)
+/*
+Function ...
+*/
+
 {
     vector<string> tokenizer_vector;
     for (unsigned int i = 0; i < UserInput.length(); i++)
@@ -69,7 +79,6 @@ vector<string> Tokens::tokenizer_input(const string &UserInput)
         // if there is negative numbers inside of a parentheses
         else if (UserInput[i] == '(')
         {
-
             if ((UserInput[i + 1] != '\0') && (UserInput[i + 1] == '-' || UserInput[i + 1] == '+'))
             {
                 tokenizer_vector.push_back(UserInput.substr(i, 1));
@@ -102,7 +111,6 @@ vector<string> Tokens::tokenizer_input(const string &UserInput)
         else if (UserInput[i] == '+' || UserInput[i] == '-' || UserInput[i] == '*' ||
                  UserInput[i] == '^' || UserInput[i] == '%' || UserInput[i] == '/')
         {
-
             if ((UserInput[i + 1] != '\0') && (UserInput[i + 1] == '-' || UserInput[i + 1] == '+'))
             {
                 tokenizer_vector.push_back(UserInput.substr(i, 1));

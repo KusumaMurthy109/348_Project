@@ -1,4 +1,10 @@
-// parser template
+/*
+Name: Parser.h
+Purpose: Parser Class for Arithmetic Parser
+
+The code ...
+*/
+
 #ifndef PARSER_H
 #define PARSER_H
 

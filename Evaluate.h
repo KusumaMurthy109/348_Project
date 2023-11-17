@@ -1,3 +1,10 @@
+/*
+Name: Evaluate.h
+Purpose: Evaluate Class for Arthimetic Parser
+
+The code ...
+*/
+
 #ifndef EVALUATE_H
 #define EVALUATE_H
 
@@ -10,7 +17,6 @@ using namespace std;
 // Note: intially assume that inputs are integers
 class Evaluate
 {
-
 public:
   vector<char> expression; // vector
 

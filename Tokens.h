@@ -1,4 +1,10 @@
-// tokenizer template
+/*
+Name: Tokens.h
+Purpose: Tokens Class for Arithmetic Parser
+
+The code ...
+*/
+
 #ifndef TOKENS_H
 #define TOKENS_H
 

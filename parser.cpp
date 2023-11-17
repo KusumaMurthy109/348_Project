@@ -72,25 +72,44 @@ bool Parser::isValidCharacter(const vector<string> &expression)
     return is_valid;
 }
 
-bool Parser::isBalancedParentheses(const vector<string> &expression){
+bool Parser::isBalancedParentheses(const vector<string> &expression)
+{
     stack<char> parentheses;
-    for (const string &val : expression){
-        if (val == "("){
+    for (const string &val : expression)
+    {
+        if (val == "(")
+        {
             parentheses.push('(');
         }
-        else if (val == ")"){
-            if (parentheses.empty()){
+        else if (val == ")")
+        {
+            if (parentheses.empty())
+            {
                 return false;
             }
 
-            else{
+            else
+            {
                 parentheses.pop();
             }
         }
     }
     return parentheses.empty();
 }
-
+bool Parser::goodInput(const vector<string> &expression)
+{
+    bool character = isValidCharacter(expression);
+    bool parenthesis = isBalancedParentheses(expression);
+    if (character == false || parenthesis == false)
+    {
+        return (false);
+    }
+    else
+    {
+        return (true);
+    }
+}
+/*
 int main()
 {
     Parser ex1;
@@ -104,3 +123,4 @@ int main()
         cout << "All good" << endl;
     }
 }
+*/

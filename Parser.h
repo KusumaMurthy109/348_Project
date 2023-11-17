@@ -1,4 +1,4 @@
-// tokenizer template
+// parser template
 #ifndef PARSER_H
 #define PARSER_H
 
@@ -16,6 +16,7 @@ public:
     bool isExpr(string val);  // helper
     bool isDigit(string val); // helper
     bool isBalancedParentheses(const vector<string> &expression);
+    bool goodInput(const vector<string> &expression);
 };
 
 #endif

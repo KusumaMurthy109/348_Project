@@ -15,6 +15,7 @@ public:
     bool isFloat(string val); // helper
     bool isExpr(string val);  // helper
     bool isDigit(string val); // helper
+    bool isBalancedParentheses(const vector<string> &expression);
 };
 
 #endif

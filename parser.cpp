@@ -9,6 +9,7 @@
 #include "Parser.h"
 
 using namespace std;
+
 bool Parser::isFloat(string val)
 {
     bool is_valid;
@@ -33,10 +34,12 @@ bool Parser::isFloat(string val)
         return is_valid;
     }
 }
+
 bool Parser::isExpr(string val)
 {
     return (val == "+" || val == "-" || val == "*" || val == "/" || val == "%" || val == "^" || val == "(" || val == ")");
 }
+
 bool Parser::isDigit(string val)
 {
     bool is_digit = true;
@@ -54,6 +57,7 @@ bool Parser::isDigit(string val)
     }
     return is_digit;
 }
+
 bool Parser::isValidCharacter(const vector<string> &expression)
 {
     bool is_valid = true;
@@ -67,19 +71,36 @@ bool Parser::isValidCharacter(const vector<string> &expression)
     }
     return is_valid;
 }
-/*
+
+bool Parser::isBalancedParentheses(const vector<string> &expression){
+    stack<char> parentheses;
+    for (const string &val : expression){
+        if (val == "("){
+            parentheses.push('(');
+        }
+        else if (val == ")"){
+            if (parentheses.empty()){
+                return false;
+            }
+
+            else{
+                parentheses.pop();
+            }
+        }
+    }
+    return parentheses.empty();
+}
+
 int main()
 {
     Parser ex1;
-    bool result = ex1.isValidCharacter({"5.5.1", "+", "3"});
-    // bool result2 = ex1.isValidCharacter({"(", ")"});
-    if (result == 0)
+    bool result = ex1.isBalancedParentheses({"(", "(", ")", "(", ")", ")"});
+    if (!result)
     {
-        cout << "Invalid character expression." << endl;
+        cout << "Expression has inbalanced parentheses." << endl;
     }
     else
     {
         cout << "All good" << endl;
     }
 }
-*/

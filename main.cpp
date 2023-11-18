@@ -12,6 +12,7 @@ The code ...
 #include "Parser.h"
 #include "Evaluate.h"
 #include "Parser.h"
+#include "Error.h"
 
 using namespace std;
 
@@ -25,19 +26,25 @@ int main()
    Tokens token;
    Evaluate ex1;
    Parser parser;
+   Error error;
    vector<string> expression = token.tokenizer_input(UserInput);
-   bool parse = parser.goodInput(expression);
-   if (parse == 0)
+   vector<string> parse = parser.goodInput(expression);
+
+   if (parse != expression)
    {
-      cout << ("Bad input") << endl;
+
+      error.errorMessage(parse);
    }
    else
    {
       double result = ex1.evaluateExpression(expression);
       cout << result << endl;
    }
+
    // double result = ex1.evaluateExpression(expression);
    // cout << result << endl;
+   //  double result = ex1.evaluateExpression(expression);
+   //  cout << result << endl;
 
    return 0;
 }

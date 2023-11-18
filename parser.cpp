@@ -49,7 +49,6 @@ Function ...
     }
 }
 
-
 bool Parser::isExpr(string val)
 /*
 Function ...
@@ -58,7 +57,6 @@ Function ...
 {
     return (val == "+" || val == "-" || val == "*" || val == "/" || val == "%" || val == "^" || val == "(" || val == ")");
 }
-
 
 bool Parser::isDigit(string val)
 /*
@@ -84,7 +82,6 @@ Function ...
     return is_digit;
 }
 
-
 bool Parser::isValidCharacter(const vector<string> &expression)
 /*
 Function ...
@@ -104,7 +101,6 @@ Function ...
     return is_valid;
 }
 
-
 bool Parser::isBalancedParentheses(const vector<string> &expression)
 /*
 Function utilizes a stack to check to see if the parentheses in the vector expression are balanced. Returns a bool.
@@ -118,19 +114,19 @@ Function utilizes a stack to check to see if the parentheses in the vector expre
         // Case: val is '('
         if (val == "(")
         {
-            parentheses.push('('); //push '(' onto the stack
+            parentheses.push('('); // push '(' onto the stack
         }
 
         // Case: val is ')'
         else if (val == ")")
         {
-            //If the stack is empty then the parentheses are not balanced and fasle is returned.
+            // If the stack is empty then the parentheses are not balanced and fasle is returned.
             if (parentheses.empty())
             {
                 return false;
             }
 
-            //Otherwise, a parentheses '(' is removed from the stack.
+            // Otherwise, a parentheses '(' is removed from the stack.
             else
             {
                 parentheses.pop();
@@ -143,8 +139,7 @@ Function utilizes a stack to check to see if the parentheses in the vector expre
     return parentheses.empty();
 }
 
-
-bool Parser::goodInput(const vector<string> &expression)
+vector<string> Parser::goodInput(const vector<string> &expression)
 /*
 Function ...
 */
@@ -152,16 +147,22 @@ Function ...
 {
     bool character = isValidCharacter(expression);
     bool parenthesis = isBalancedParentheses(expression);
+    vector<string> badInput;
 
-    if (character == false || parenthesis == false)
+    if (character == false)
     {
-        return false;
+        badInput.push_back("Invalid Character Error.");
+    }
+    if (parenthesis == false)
+    {
+        badInput.push_back("Parenthesis Error.");
     }
 
-    else
+    if (character != false and parenthesis != false)
     {
-        return true;
+        return expression;
     }
+    return badInput;
 }
 /*
 int main()

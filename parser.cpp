@@ -143,7 +143,7 @@ vector<string> Parser::goodInput(const vector<string> &expression)
 /*
 Function ...
 */
-
+/*Sophia*/
 {
     bool character = isValidCharacter(expression);
     bool parenthesis = isBalancedParentheses(expression);
@@ -167,12 +167,12 @@ Function ...
 
 bool Parser::isValid(const vector<string> &expression)
 {
-    //correct expression = "8 - (5 - 2)", "(((2 + 3))) + (((1 + 2)))", "+(-2) * (-3) – ((-4) / (+5))", "-(-(-3)) + (-4) + (+5)", "(+2) * (+3) - (-4) / (-5)" 
-    //incorrect expression = "* 5 + 2", "(((3 + 4) - 2) + (1)", "((4 * 2) + ( - ))", "5 (2 + 3)"
+    // correct expression = "8 - (5 - 2)", "(((2 + 3))) + (((1 + 2)))", "+(-2) * (-3) – ((-4) / (+5))", "-(-(-3)) + (-4) + (+5)", "(+2) * (+3) - (-4) / (-5)"
+    // incorrect expression = "* 5 + 2", "(((3 + 4) - 2) + (1)", "((4 * 2) + ( - ))", "5 (2 + 3)"
     int exprSize = expression.size();
     bool valid = true;
 
-    //check if the beginning of the expressions starts with +,-,*,/,etc. and/or the ends with +,-,*,/, etc.
+    // check if the beginning of the expressions starts with +,-,*,/,etc. and/or the ends with +,-,*,/, etc.
     if (isExpr(expression[0]) && ((expression[0] != "+" && expression[0] != "-" && expression[0] != "(")))
     {
         std::cout << "beginning";
@@ -184,39 +184,38 @@ bool Parser::isValid(const vector<string> &expression)
         valid = false;
         return valid;
     }
-    
-    //checks for invalid consecutive operands and invalid expresions e.g. 5(1+3)
-    for (int i = 0; i < exprSize-1; ++i)
-    {
-            //std::cout << "i="<< expression[i] <<"  i + 1=" << expression[i + 1]<< endl;
-            if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (!(expression[i + 1] == "+" || expression[i + 1] == "-" || expression[i + 1] == "(" || expression[i + 1] == ")")))
-            {
-                //std::cout << "condition 1";
-                valid = false;
-                return valid;
-            }
-            else if (isExpr(expression[i]) && (expression[i] != ")") && (expression[i + 1] == ")"))
-            {
-                //std::cout << "condition 2";
-                valid = false;
-                return valid;
-            }
 
-            else if (isDigit(expression[i]) && (expression[i + 1] == "("))
-            {
-                //std::cout << "condition 3";
-                valid = false;
-                return valid;
-            }
-            else if (isExpr(expression[i]) && expression[i] != ")" && expression[i + 1] == ")")
-            {
-                //std::cout << "condition 4" << expression[i] << expression[i + 1];
-                valid = false;
-                return valid;
-            }
+    // checks for invalid consecutive operands and invalid expresions e.g. 5(1+3)
+    for (int i = 0; i < exprSize - 1; ++i)
+    {
+        // std::cout << "i="<< expression[i] <<"  i + 1=" << expression[i + 1]<< endl;
+        if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (!(expression[i + 1] == "+" || expression[i + 1] == "-" || expression[i + 1] == "(" || expression[i + 1] == ")")))
+        {
+            // std::cout << "condition 1";
+            valid = false;
+            return valid;
+        }
+        else if (isExpr(expression[i]) && (expression[i] != ")") && (expression[i + 1] == ")"))
+        {
+            // std::cout << "condition 2";
+            valid = false;
+            return valid;
+        }
+
+        else if (isDigit(expression[i]) && (expression[i + 1] == "("))
+        {
+            // std::cout << "condition 3";
+            valid = false;
+            return valid;
+        }
+        else if (isExpr(expression[i]) && expression[i] != ")" && expression[i + 1] == ")")
+        {
+            // std::cout << "condition 4" << expression[i] << expression[i + 1];
+            valid = false;
+            return valid;
+        }
     }
     return valid;
-
 }
 /*int main()
 {

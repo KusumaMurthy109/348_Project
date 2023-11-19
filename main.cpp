@@ -2,6 +2,7 @@
 Name: main.cpp
 Purpose: Driver for Arthimetic Parser
 
+
 The code ...
 */
 
@@ -52,10 +53,11 @@ int main()
 /*
 TO RUN THE CODE:
 Type into you terminal:
-   g++ -c main.cpp -o main.o
-   g++ -c tokens.cpp -o tokens.o
-   g++ main.o tokens.o -o myprogram
+  g++ -c main.cpp -o main.o
+  g++ -c tokens.cpp -o tokens.o
+  g++ main.o tokens.o -o myprogram
+
 
 and then enter the following command into the terminal:
-   ./myprogram
+  ./myprogram
 */

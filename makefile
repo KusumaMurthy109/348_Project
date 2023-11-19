@@ -36,34 +36,34 @@
 
 # MAKE FILE JUST FOR PARSER.H AND PARSER.CPP
 # Compiler
-#CC := g++
+CC := g++
 
 # Compiler flags
-#CFLAGS := -Wall -std=c++11
+CFLAGS := -Wall -std=c++11
 
 # Source files
-#SRCS := parser.cpp
+SRCS := parser.cpp
 
 # Header files
-#HEADERS := Parser.h
+HEADERS := Parser.h
 
 # Object files
-#OBJS := $(SRCS:.cpp=.o)
+OBJS := $(SRCS:.cpp=.o)
 
 # Executable name
-#TARGET := parser_program
+TARGET := parser_program
 
 # Build rule for the executable
-#$(TARGET): $(OBJS)
-#	$(CC) $(CFLAGS) $^ -o $@
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) $^ -o $@
 
 # Build rule for object files
-#%.o: %.cpp $(HEADERS)
-#	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.cpp $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean rule
-#clean:
-#	rm -f $(OBJS) $(TARGET)
+clean:
+	rm -f $(OBJS) $(TARGET)
 
 
 
@@ -101,67 +101,6 @@
 #	$(CC) $(CFLAGS) -c tokens.cpp
 
 # Clean rule
-#clean:
-#	rm -f $(OBJS) $(TARGET)
-
-
-
-# Makefile for error.cpp and Error.h
-
-# Compiler
-#CC = g++
-
-# Compiler flags
-#CFLAGS = -Wall -g
-
-# Source files
-#SRC = error.cpp
-#HDR = Error.h
-
-# Object files
-#OBJ = $(SRC:.cpp=.o)
-
-# Executable
-#TARGET = error
-
-# Build the executable
-#$(TARGET): $(OBJ)
-#	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
-
-# Compile source files into object files
-#%.o: %.cpp $(HDR)
-#	$(CC) $(CFLAGS) -c $< -o $@
-
-# Clean up object files and the executable
-#clean:
-#	rm -f $(OBJ) $(TARGET)
-
-# Makefile for parser.cpp, Parser.h, tokens.cpp, Tokens.h, evaluate.cpp, Evaluate.h, Error.h, error.cpp
-
-# Compiler
-CC := g++
-
-# Compiler flags
-CFLAGS := -Wall -std=c++11
-
-# Source files
-SRC := parser.cpp tokens.cpp evaluate.cpp error.cpp main.cpp
-HDR := Parser.h Tokens.h Evaluate.h Error.h
-
-# Object files
-OBJ = $(SRC:.cpp=.o)
-
-# Executable
-TARGET = myparser
-
-# Build the executable
-$(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
-
-# Compile source files into object files
-%.o: %.cpp $(HDR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Clean up object files and the executable
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJS) $(TARGET)
+

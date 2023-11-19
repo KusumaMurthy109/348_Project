@@ -2,6 +2,7 @@
 Name: parser.cpp
 Purpose: Defines the Parser Class for Arithmetic Parser
 
+
 The code ...
 */
 
@@ -143,7 +144,7 @@ vector<string> Parser::goodInput(const vector<string> &expression)
 /*
 Function ...
 */
-/*Sophia*/
+
 {
     bool character = isValidCharacter(expression);
     bool parenthesis = isBalancedParentheses(expression);
@@ -175,7 +176,6 @@ bool Parser::isValid(const vector<string> &expression)
     // check if the beginning of the expressions starts with +,-,*,/,etc. and/or the ends with +,-,*,/, etc.
     if (isExpr(expression[0]) && ((expression[0] != "+" && expression[0] != "-" && expression[0] != "(")))
     {
-        std::cout << "beginning";
         valid = false;
         return valid;
     }
@@ -219,14 +219,14 @@ bool Parser::isValid(const vector<string> &expression)
 }
 /*int main()
 {
-    Parser ex1;
-    bool result = ex1.isValid({"(", "(", "(", "3", "+4", ")", "-2", ")", ")"});
-    if (result)
-    {
-        cout << "true." << endl;
-    }
-    else
-    {
-        cout << "false" << endl;
-    }
+   Parser ex1;
+   bool result = ex1.isValid({"(", "(", "(", "3", "+4", ")", "-2", ")", ")"});
+   if (result)
+   {
+       cout << "true." << endl;
+   }
+   else
+   {
+       cout << "false" << endl;
+   }
 }*/

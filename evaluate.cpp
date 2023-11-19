@@ -59,179 +59,187 @@ Operator precedence is consider and final answer is returned.
 */
 
 {
-    int index = 0;
-    stack<double> operands; // initializes a stack for numbers
-    stack<char> operators;  // initializes a stack for operators
-
-    /*
-    Iterates through each value of the vector expression, adds its corresponding stack, and performs evaluations throughout.
-    */
-
-    for (const string &val : expression)
+    try
     {
-        // Case: val is a number
-        if (!isOperator(val) && (val[0] != '(') && (val[0] != ')'))
-        {
-            double d1;               // creates a variable of type double
-            stringstream(val) >> d1; // converts the string of a number into a double
-            operands.push(d1);       // pushes number into operands stack
-            index++;
-        }
 
-        // Case: val is '('
-        else if (val == "(")
+        int index = 0;
+        stack<double> operands; // initializes a stack for numbers
+        stack<char> operators;  // initializes a stack for operators
+
+        /*
+        Iterates through each value of the vector expression, adds its corresponding stack, and performs evaluations throughout.
+        */
+
+        for (const string &val : expression)
         {
-            operators.push('('); // pushes '(' to operators stack
-            index++;
-        }
-        // Case: val is )
-        else if (val == ")")
-        {
-            // Start evaluating expression until the '(' parenthesis.
-            while (!operators.empty() && operators.top() != '(')
+            // Case: val is a number
+            if (!isOperator(val) && (val[0] != '(') && (val[0] != ')'))
             {
-                char op = operators.top();        // op is set to the operator at the top of the stack
-                operators.pop();                  // operator is then removed from stack
-                double operand2 = operands.top(); // the right operand is set to the number at the top of the stack
-                operands.pop();                   // operand is then removed from stack
-                double operand1 = operands.top(); // the left operand is set to the number at the top of the stack
-                operands.pop();                   // operand is then removed from stack
-
-                if (op == '+')
-                {
-                    operands.push(operand1 + operand2); // performs addition and pushes the sum onto the stack
-                }
-
-                else if (op == '-')
-                {
-                    operands.push(operand1 - operand2); // performs substraction and pushes the difference onto the stack
-                }
-
-                else if (op == '*')
-                {
-                    operands.push(operand1 * operand2); // perfoms multiplication and pushes the product onto the stack
-                }
-
-                else if (op == '/')
-                {
-                    try
-                    {
-                        if (operand2 == 0)
-                        {
-                            throw(operand2);
-                        }
-                        else
-                        {
-                            double new_operand = operand2;
-                            double result = operand1 / new_operand;
-                            operands.push(result); // pushes the quotient onto the stack
-                        }
-                    }
-                    catch (...)
-                    {
-                        Error er1;
-                        vector<string> error_message;
-                        error_message.push_back("Division by Zero Error.");
-                        er1.errorMessage(error_message);
-                        break;
-                    }
-                }
-
-                else if (op == '%')
-                {
-                    long new_op1 = operand1;
-                    long new_op2 = operand2;
-                    operands.push(new_op1 % new_op2); // pushes the remainder onto the stack
-                }
-
-                else if (op == '^')
-                    operands.push(pow(operand1, operand2)); // pushes the power onto the stack
+                double d1;               // creates a variable of type double
+                stringstream(val) >> d1; // converts the string of a number into a double
+                operands.push(d1);       // pushes number into operands stack
+                index++;
             }
-            operators.pop(); // removes '('
-            index++;
-        }
 
-        // Case:
-        else if (isOperator(val) && index == 0 && val == "+")
-        {
-            index++;
-        }
-
-        // Case:
-        else if (isOperator(val) && index == 0 && val == "-")
-        {
-            operands.push(-1);
-            operators.push('*');
-            index++;
-        }
-
-        // Case:
-        else if (isOperator(val) && index != 0 && val == "-" && expression[index - 1] == "(" and expression[index + 1] == "(")
-        {
-            operands.push(-1);
-            operators.push('*');
-            index++;
-        }
-
-        // Case: val is an operator
-        else if (isOperator(val))
-        {
-            // Starts evaluating expression until the operators in the operators stack is in order of precedence.
-            while (!operators.empty() && (getPrecedence(operators.top()) >= getPrecedence(val[0])))
+            // Case: val is '('
+            else if (val == "(")
             {
-                char op = operators.top();
-                operators.pop();
-                double operand2 = operands.top();
-                operands.pop();
-                double operand1 = operands.top();
-                operands.pop();
-
-                if (op == '+')
-                    operands.push(operand1 + operand2);
-                else if (op == '-')
-                    operands.push(operand1 - operand2);
-                else if (op == '*')
-                    operands.push(operand1 * operand2);
-                else if (op == '/')
-                {
-                    try
-                    {
-                        if (operand2 == 0)
-                        {
-                            throw(operand2);
-                        }
-                        else
-                        {
-                            double new_operand = operand2;
-                            double result = operand1 / new_operand;
-                            operands.push(result); // pushes the quotient onto the stack
-                        }
-                    }
-                    catch (...)
-                    {
-                        Error er1;
-                        vector<string> error_message;
-                        error_message.push_back("Division by Zero Error.");
-                        er1.errorMessage(error_message);
-                        break;
-                    }
-                }
-                else if (op == '%')
-                {
-                    long new_op1 = operand1;
-                    long new_op2 = operand2;
-                    operands.push(new_op1 % new_op2);
-                }
-                else if (op == '^')
-                    operands.push(pow(operand1, operand2));
+                operators.push('('); // pushes '(' to operators stack
+                index++;
             }
-            operators.push(val[0]); // Pushes the new operator at the very end so that we can evaluate the one with precedence first.
-            index++;
+            // Case: val is )
+            else if (val == ")")
+            {
+                // Start evaluating expression until the '(' parenthesis.
+                while (!operators.empty() && operators.top() != '(')
+                {
+                    char op = operators.top();        // op is set to the operator at the top of the stack
+                    operators.pop();                  // operator is then removed from stack
+                    double operand2 = operands.top(); // the right operand is set to the number at the top of the stack
+                    operands.pop();                   // operand is then removed from stack
+                    double operand1 = operands.top(); // the left operand is set to the number at the top of the stack
+                    operands.pop();                   // operand is then removed from stack
+
+                    if (op == '+')
+                    {
+                        operands.push(operand1 + operand2); // performs addition and pushes the sum onto the stack
+                    }
+
+                    else if (op == '-')
+                    {
+                        operands.push(operand1 - operand2); // performs substraction and pushes the difference onto the stack
+                    }
+
+                    else if (op == '*')
+                    {
+                        operands.push(operand1 * operand2); // perfoms multiplication and pushes the product onto the stack
+                    }
+
+                    else if (op == '/')
+                    {
+                        try
+                        {
+                            if (operand2 == 0)
+                            {
+                                throw(operand2);
+                            }
+                            else
+                            {
+                                double new_operand = operand2;
+                                double result = operand1 / new_operand;
+                                operands.push(result); // pushes the quotient onto the stack
+                            }
+                        }
+                        catch (...)
+                        {
+                            Error er1;
+                            vector<string> error_message;
+                            error_message.push_back("Division by Zero Error.");
+                            er1.errorMessage(error_message);
+                            break;
+                        }
+                    }
+
+                    else if (op == '%')
+                    {
+                        long new_op1 = operand1;
+                        long new_op2 = operand2;
+                        operands.push(new_op1 % new_op2); // pushes the remainder onto the stack
+                    }
+
+                    else if (op == '^')
+                        operands.push(pow(operand1, operand2)); // pushes the power onto the stack
+                }
+                operators.pop(); // removes '('
+                index++;
+            }
+
+            // Case:
+            else if (isOperator(val) && index == 0 && val == "+")
+            {
+                index++;
+            }
+
+            // Case:
+            else if (isOperator(val) && index == 0 && val == "-")
+            {
+                operands.push(-1);
+                operators.push('*');
+                index++;
+            }
+
+            // Case:
+            else if (isOperator(val) && index != 0 && val == "-" && expression[index - 1] == "(" and expression[index + 1] == "(")
+            {
+                operands.push(-1);
+                operators.push('*');
+                index++;
+            }
+
+            // Case: val is an operator
+            else if (isOperator(val))
+            {
+                // Starts evaluating expression until the operators in the operators stack is in order of precedence.
+                while (!operators.empty() && (getPrecedence(operators.top()) >= getPrecedence(val[0])))
+                {
+                    char op = operators.top();
+                    operators.pop();
+                    double operand2 = operands.top();
+                    operands.pop();
+                    double operand1 = operands.top();
+                    operands.pop();
+
+                    if (op == '+')
+                        operands.push(operand1 + operand2);
+                    else if (op == '-')
+                        operands.push(operand1 - operand2);
+                    else if (op == '*')
+                        operands.push(operand1 * operand2);
+                    else if (op == '/')
+                    {
+                        try
+                        {
+                            if (operand2 == 0)
+                            {
+                                throw(operand2);
+                            }
+                            else
+                            {
+                                double new_operand = operand2;
+                                double result = operand1 / new_operand;
+                                operands.push(result); // pushes the quotient onto the stack
+                            }
+                        }
+                        catch (...)
+                        {
+                            Error er1;
+                            vector<string> error_message;
+                            error_message.push_back("Division by Zero Error.");
+                            er1.errorMessage(error_message);
+                            break;
+                        }
+                    }
+                    else if (op == '%')
+                    {
+                        long new_op1 = operand1;
+                        long new_op2 = operand2;
+                        operands.push(new_op1 % new_op2);
+                    }
+                    else if (op == '^')
+                        operands.push(pow(operand1, operand2));
+                }
+                operators.push(val[0]); // Pushes the new operator at the very end so that we can evaluate the one with precedence first.
+                index++;
+            }
         }
+
+        double result = evaluateRemainding(operands, operators);
+        return result;
     }
-
-    double result = evaluateRemainding(operands, operators);
-    return result;
+    catch (...)
+    {
+        throw(expression);
+    }
 }
 
 double Evaluate::evaluateRemainding(stack<double> &operands, stack<char> &operators)

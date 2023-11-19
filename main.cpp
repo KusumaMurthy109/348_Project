@@ -44,7 +44,9 @@ int main()
       }
       catch (...)
       {
-         ;
+         vector<string> er1;
+         er1.push_back("Bad Input.");
+         error.errorMessage(er1);
       }
    }
 

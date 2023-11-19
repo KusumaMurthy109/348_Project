@@ -207,7 +207,7 @@ bool Parser::isValid(const vector<string> &expression)
             return valid;
         }
 
-        else if (isDigit(expression[i]) && (expression[i + 1] == "("))
+        else if (isDigit(expression[i]) && (expression[i + 1] == "(") && expression[i] != "-" && expression[i] != "+")
         {
             // std::cout << "condition 3";
             valid = false;
@@ -222,6 +222,7 @@ bool Parser::isValid(const vector<string> &expression)
     }
     return valid;
 }
+
 /*int main()
 {
    Parser ex1;

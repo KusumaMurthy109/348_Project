@@ -101,6 +101,6 @@ clean:
 #	$(CC) $(CFLAGS) -c tokens.cpp
 
 # Clean rule
-#clean:
-#	rm -f $(OBJS) $(TARGET)
+clean:
+	rm -f $(OBJS) $(TARGET)
 

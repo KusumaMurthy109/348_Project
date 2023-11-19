@@ -194,7 +194,8 @@ bool Parser::isValid(const vector<string> &expression)
     for (int i = 0; i < exprSize - 1; ++i)
     {
         // std::cout << "i="<< expression[i] <<"  i + 1=" << expression[i + 1]<< endl;
-        if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (!(expression[i + 1] == "+" || expression[i + 1] == "-" || expression[i + 1] == "(" || expression[i + 1] == ")")))
+
+        if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (!(expression[i + 1] == "+" || expression[i + 1] == "-" || expression[i + 1] == "(" || expression[i + 1] == ")" || expression[i] == ")")))
         {
             // std::cout << "condition 1";
             valid = false;

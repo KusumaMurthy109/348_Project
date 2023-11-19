@@ -158,14 +158,6 @@ Operator precedence is consider and final answer is returned.
         }
 
         // Case:
-        else if (isOperator(val) && (index == 0 || index == 1) && val == "-" && expression[1] == "-")
-        {
-            operands.push(-1);
-            operators.push('*');
-            index++;
-        }
-
-        // Case:
         else if (isOperator(val) && index == 0 && val == "-")
         {
             operands.push(-1);

@@ -2,6 +2,7 @@
 Name: evaluate.cpp
 Purpose: Defines the Evaluate Class for Arithmetic Parser
 
+
 The code ...
 */
 
@@ -24,7 +25,6 @@ Function determines if a string is an operator and returns a bool.
 {
     return c == "+" || c == "-" || c == "*" || c == "/" || c == "%" || c == "^";
 }
-
 
 int Evaluate::getPrecedence(char op)
 /*
@@ -51,7 +51,6 @@ Function determines the precedence of operators and returns corresponding intege
         return 0;
     }
 }
-
 
 double Evaluate::evaluateExpression(const vector<string> &expression)
 /*
@@ -134,12 +133,12 @@ Operator precedence is consider and final answer is returned.
             index++;
         }
 
-        // Case: 
+        // Case:
         else if (isOperator(val) && index == 0 && val == "+")
         {
             index++;
         }
-        
+
         // Case:
         else if (isOperator(val) && (index == 0 || index == 1) && val == "-" && expression[1] == "-")
         {
@@ -206,7 +205,6 @@ Operator precedence is consider and final answer is returned.
     return result;
 }
 
-
 double Evaluate::evaluateRemainding(stack<double> &operands, stack<char> &operators)
 {
     while (!operators.empty())
@@ -255,77 +253,85 @@ double Evaluate::evaluateRemainding(stack<double> &operands, stack<char> &operat
 }
 /*
 int main() {
-   // Example expression represented as an array of tokens
-   //4 * (3 + 2) % 7 - 1
-   // (((2 + 3))) + (((1 + 2)))
-   // +(-2) * (-3) – ((-4) / (+5))
-   // ((5 * 2) - ((3 / 1) + ((4 % 3))))
-   // (((2 ^ (1 + 1)) + ((3 - 1) ^ 2)) / ((4 / 2) % 3))
-   // (((((5 - 3))) * (((2 + 1))) + ((2 * 3))))
-   // ((9 + 6)) / ((3 * 1) / (((2 + 2))) - 1)
-   //-(+1) + (+2)
-   // -(+2) * (+3) - (-4) / (-5)
-   // -(-(-3)) + (-4) + (+5)
-   vector<string> tokens = {"41", "*", "(", "32", "+", "21", ")", "+", "71", "-", "12"};
-   vector<string>tokens2 = {"-", "(", "+1", ")", "+", "(", "+2", ")"};
-   vector<string> token2 = {"+2", "^", "-3"};
-   vector<string> token3 = {"10.2", "*", "2", "/", "5"};
-   vector<string> token4 = {"(", "(", "(", "2", "+", "3", ")", ")", ")", "+", "(",  "(", "(", "1", "+", "2", ")", ")", ")"};
-   vector <string> token5 = {"+", "(", "-2", ")", "*", "(", "-3", ")", "-",  "(", "(", "-4", ")", "/", "(", "+5", ")", ")"};
-   //vector<string> token5 = {"-2", "+", "1"};
-   vector <string> token6 = {"-2", "*", "-3", "-", "(", "-4", "/", "5", ")"};
-   vector <string> token7 = {"(", "-2", ")", "*", "(", "-3", ")", "-",  "(", "(", "-4", ")", "/", "(", "+5", ")", ")"};
-  //vector <string> token8 = {"-", "(", "+1", ")", "+", "(", "+2", ")"};
-  vector <string> token8 = {"8", "-", "(", "5", "-", "2", ")"};
-  vector <string> token9 = {"(", "(", "5", "*", "2", ")", "-", "(",  "(", "3", "/", "1", ")", "+", "(", "(", "4", "%", "3", ")", ")", ")", ")"};
-  vector <string> token10 = {"(", "(", "(", "2", "^", "(", "1", "+",  "1", ")", ")", "+", "(", "(", "3", "-", "1", ")", "^", "2", ")", ")", "/", "(", "(", "4", "/", "2", ")", "%", "3", ")", ")"};
-  vector <string> token11 = {"(", "(", "(", "(", "(", "5", "-", "3", ")",  ")", ")", "*", "(", "(", "(", "2", "+", "1", ")", ")", ")", "+", "(", "(", "2", "*", "3", ")", ")", ")", ")"};
-  vector <string> token12 = {"(", "(", "9", "+", "6", ")", ")", "/", "(",  "(", "3", "*", "1", ")", "/", "(", "(", "(", "2", "+", "2", ")", ")", ")", "-", "1", ")"};
-  vector <string> token14 = {"-", "(", "+2", ")", "*", "(", "+3", ")", "-", "(", "-4", ")", "/", "(", "-5", ")"};
-  vector <string> token15 = {"+", "(", "+2", ")", "*", "(", "+3", ")", "+", "(", "-4", ")", "/", "(", "-5", ")"};
-  vector <string> token16 = {"-", "(", "-", "(", "-3", ")", ")", "+", "(", "-4", ")", "+", "(", "+5", ")"};
-
-
- // Evaluate the expression
- Evaluate ex1;
- double result = ex1.evaluateExpression(tokens);
- double result2 = ex1.evaluateExpression(token2);
- double result3 = ex1.evaluateExpression(token3);
- double result4 = ex1.evaluateExpression(token4);
- double result5 = ex1.evaluateExpression(token5);
- double result6 = ex1.evaluateExpression(token6);
- double result7 = ex1.evaluateExpression(token7);
- double result8 = ex1.evaluateExpression(token8);
- double result9 = ex1.evaluateExpression(token9);
- double result10 = ex1.evaluateExpression(token10);
- double result11 = ex1.evaluateExpression(token11);
- double result12 = ex1.evaluateExpression(token12);
- double resultt2 = ex1.evaluateExpression(tokens2);
- double result14 = ex1.evaluateExpression(token14);
- double result15 = ex1.evaluateExpression(token15);
- double result16 = ex1.evaluateExpression(token16);
- // Output the result
- cout << result << endl;
- cout << result2 << endl;
- cout << result3 << endl;
- cout << result4 << endl;
- cout << result5 << endl;
- cout << result6 << endl;
- cout << result7 << endl;
- cout << result8 << endl;
- cout << result9 << endl;
- cout << result10 << endl;
- cout << result11 << endl;
- cout << result12 << endl;
- cout << resultt2 << endl;
- cout << result14 << endl;
- cout << result15 << endl;
- cout << result16 << endl;
+  // Example expression represented as an array of tokens
+  //4 * (3 + 2) % 7 - 1
+  // (((2 + 3))) + (((1 + 2)))
+  // +(-2) * (-3) – ((-4) / (+5))
+  // ((5 * 2) - ((3 / 1) + ((4 % 3))))
+  // (((2 ^ (1 + 1)) + ((3 - 1) ^ 2)) / ((4 / 2) % 3))
+  // (((((5 - 3))) * (((2 + 1))) + ((2 * 3))))
+  // ((9 + 6)) / ((3 * 1) / (((2 + 2))) - 1)
+  //-(+1) + (+2)
+  // -(+2) * (+3) - (-4) / (-5)
+  // -(-(-3)) + (-4) + (+5)
+  vector<string> tokens = {"41", "*", "(", "32", "+", "21", ")", "+", "71", "-", "12"};
+  vector<string>tokens2 = {"-", "(", "+1", ")", "+", "(", "+2", ")"};
+  vector<string> token2 = {"+2", "^", "-3"};
+  vector<string> token3 = {"10.2", "*", "2", "/", "5"};
+  vector<string> token4 = {"(", "(", "(", "2", "+", "3", ")", ")", ")", "+", "(",  "(", "(", "1", "+", "2", ")", ")", ")"};
+  vector <string> token5 = {"+", "(", "-2", ")", "*", "(", "-3", ")", "-",  "(", "(", "-4", ")", "/", "(", "+5", ")", ")"};
+  //vector<string> token5 = {"-2", "+", "1"};
+  vector <string> token6 = {"-2", "*", "-3", "-", "(", "-4", "/", "5", ")"};
+  vector <string> token7 = {"(", "-2", ")", "*", "(", "-3", ")", "-",  "(", "(", "-4", ")", "/", "(", "+5", ")", ")"};
+ //vector <string> token8 = {"-", "(", "+1", ")", "+", "(", "+2", ")"};
+ vector <string> token8 = {"8", "-", "(", "5", "-", "2", ")"};
+ vector <string> token9 = {"(", "(", "5", "*", "2", ")", "-", "(",  "(", "3", "/", "1", ")", "+", "(", "(", "4", "%", "3", ")", ")", ")", ")"};
+ vector <string> token10 = {"(", "(", "(", "2", "^", "(", "1", "+",  "1", ")", ")", "+", "(", "(", "3", "-", "1", ")", "^", "2", ")", ")", "/", "(", "(", "4", "/", "2", ")", "%", "3", ")", ")"};
+ vector <string> token11 = {"(", "(", "(", "(", "(", "5", "-", "3", ")",  ")", ")", "*", "(", "(", "(", "2", "+", "1", ")", ")", ")", "+", "(", "(", "2", "*", "3", ")", ")", ")", ")"};
+ vector <string> token12 = {"(", "(", "9", "+", "6", ")", ")", "/", "(",  "(", "3", "*", "1", ")", "/", "(", "(", "(", "2", "+", "2", ")", ")", ")", "-", "1", ")"};
+ vector <string> token14 = {"-", "(", "+2", ")", "*", "(", "+3", ")", "-", "(", "-4", ")", "/", "(", "-5", ")"};
+ vector <string> token15 = {"+", "(", "+2", ")", "*", "(", "+3", ")", "+", "(", "-4", ")", "/", "(", "-5", ")"};
+ vector <string> token16 = {"-", "(", "-", "(", "-3", ")", ")", "+", "(", "-4", ")", "+", "(", "+5", ")"};
 
 
 
 
- return 0;
+// Evaluate the expression
+Evaluate ex1;
+double result = ex1.evaluateExpression(tokens);
+double result2 = ex1.evaluateExpression(token2);
+double result3 = ex1.evaluateExpression(token3);
+double result4 = ex1.evaluateExpression(token4);
+double result5 = ex1.evaluateExpression(token5);
+double result6 = ex1.evaluateExpression(token6);
+double result7 = ex1.evaluateExpression(token7);
+double result8 = ex1.evaluateExpression(token8);
+double result9 = ex1.evaluateExpression(token9);
+double result10 = ex1.evaluateExpression(token10);
+double result11 = ex1.evaluateExpression(token11);
+double result12 = ex1.evaluateExpression(token12);
+double resultt2 = ex1.evaluateExpression(tokens2);
+double result14 = ex1.evaluateExpression(token14);
+double result15 = ex1.evaluateExpression(token15);
+double result16 = ex1.evaluateExpression(token16);
+// Output the result
+cout << result << endl;
+cout << result2 << endl;
+cout << result3 << endl;
+cout << result4 << endl;
+cout << result5 << endl;
+cout << result6 << endl;
+cout << result7 << endl;
+cout << result8 << endl;
+cout << result9 << endl;
+cout << result10 << endl;
+cout << result11 << endl;
+cout << result12 << endl;
+cout << resultt2 << endl;
+cout << result14 << endl;
+cout << result15 << endl;
+cout << result16 << endl;
+
+
+
+
+
+
+
+
+return 0;
+
+
 
 
 }

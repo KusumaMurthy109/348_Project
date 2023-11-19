@@ -148,6 +148,7 @@ Function ...
 {
     bool character = isValidCharacter(expression);
     bool parenthesis = isBalancedParentheses(expression);
+    bool valid = isValid(expression);
     vector<string> badInput;
 
     if (character == false)
@@ -158,8 +159,12 @@ Function ...
     {
         badInput.push_back("Parenthesis Error.");
     }
+    if (valid == false)
+    {
+        badInput.push_back("Operands (or not enough operands) is in the wrong position.");
+    }
 
-    if (character != false and parenthesis != false)
+    if (character != false and parenthesis != false and valid != false)
     {
         return expression;
     }

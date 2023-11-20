@@ -1,8 +1,9 @@
 /*
 Name: tokens.cpp
-Purpose: Defines the Token Class for Arithmetic Parser
-
-The code ...
+Authors: Kusuma Murthy, Nimra Syed, Reeny Huang
+Date: 11/08/2023
+Last modified: 11/19/2023
+Purpose: To create a Tokenizer Module that takes in the user's string expression and makes it into an evaluatable vector expression.
 */
 
 #include <iostream>

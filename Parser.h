@@ -1,9 +1,9 @@
 /*
-Name: Parser.h
-Purpose: Parser Class for Arithmetic Parser
-
-
-The code ...
+Name: parser.cpp
+Authors: ALL
+Date: 11/10/2023
+Last modified: 11/19/2023
+Purpose: Header file for Parser Module that goes through the expression stored in vector, before it goes to Evaluate, to check for bad input and raise Errors if necessary.
 */
 
 #ifndef PARSER_H

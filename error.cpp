@@ -19,11 +19,15 @@ Purpose: Create Error Module that takes in a vector of Error Messages and prints
 using namespace std;
 
 void Error::errorMessage(const vector<string> &error)
+/*
+Function prints out all error messages that have arrisen due to bad input.
+*/
 {
+
     // Iterating over vector elements
     for (unsigned int i = 0; i < error.size(); i++)
     {
-        cout << error[i] << endl;
+        cout << error[i] << endl; // Prints the error message at index indicating why there was bad input/why expression can't be evaluated.
     }
 }
 

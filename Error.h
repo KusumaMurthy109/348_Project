@@ -18,7 +18,7 @@ using namespace std;
 class Error
 {
 public:
-    void errorMessage(const vector<string> &error);
+    void errorMessage(const vector<string> &error); // Function that takes in a vector of Error Messages and prints them and deals with the errors accordingly.
 };
 
 #endif

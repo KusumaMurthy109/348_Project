@@ -21,7 +21,7 @@ using namespace std;
 void Error::errorMessage(const vector<string> &error)
 {
     // Iterating over vector elements
-    for (int i = 0; i < error.size(); i++)
+    for (unsigned int i = 0; i < error.size(); i++)
     {
         cout << error[i] << endl;
     }

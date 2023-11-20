@@ -1,8 +1,9 @@
 /*
 Name: evaluate.cpp
-Purpose: Defines the Evaluate Class for Arithmetic Parser
-
-The code ...
+Authors: Sophia Jacob, Anna Linn, Navya Nittala
+Date: 11/08/2023
+Last modified: 11/19/2023
+Purpose: Evaluate Module that returns the accurate output, through stack implementation, of an expression given by a vector.
 */
 
 #include <iostream>

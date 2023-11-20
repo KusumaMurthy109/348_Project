@@ -1,8 +1,9 @@
 /*
 Name: main.cpp
-Purpose: Driver for Arthimetic Parser
-
-The code ...
+Authors: ALL
+Date: 11/08/2023
+Last modified: 11/19/2023
+Purpose: Input Module that asks for User Input, stores it, allows it to go to the Tokenizer, Parser, and Evaluate Modules, all while handling errors in the process through Error Module.
 */
 
 #include <iostream>

@@ -15,26 +15,16 @@ Purpose: Header File for Evaluate Module that returns the accurate output, throu
 
 using namespace std;
 
-// Note: intially assume that inputs are integers
 class Evaluate
 {
 public:
-  vector<char> expression; // vector
+  vector<char> expression; // Input vector that we want to evaluate.
 
   // private:
-  bool isOperator(string c);
-  int getPrecedence(char op);
-  double evaluateExpression(const vector<string> &expression);
-  double evaluateRemainding(stack<double> &operands, stack<char> &operators);
-  /*
-  void CreateStack(vector<char> expression, stack<char>* operators, stack<double>* operands);
-  bool isOperator(char expression);
-  void ParenthesesHandler(stack<char> &operators, stack<double> &operands);
-  void OperatorPrecedence(char expression, stack<char> *operators, stack<double> *operands);
-  int getPrecedence(char expression);
-  double SimplyRemainding(stack<char> &operators, stack<double> &operands);
-  double Solve(vector<char> expression);
-  */
+  bool isOperator(string c);                                                  // Checks if the character is an operator: +, -, *, /, %, ^.
+  int getPrecedence(char op);                                                 // Returns which operator has a higher order of precedence (3 is highest).
+  double evaluateExpression(const vector<string> &expression);                // Makes operators and operands into Stacks to represent expression's Structure and starts evaluating.
+  double evaluateRemainding(stack<double> &operands, stack<char> &operators); // If there is any remaining operators in the stack (ex. outside of parenthesis), then evaluate and finish.
 };
 
 #endif

@@ -18,13 +18,13 @@ using namespace std;
 class Parser
 {
 public:
-    bool isValidCharacter(const vector<string> &expression);
-    bool isFloat(string val); // helper
-    bool isExpr(string val);  // helper
-    bool isDigit(string val); // helper
-    bool isBalancedParentheses(const vector<string> &expression);
-    vector<string> goodInput(const vector<string> &expression);
-    bool isMathValid(const vector<string> &expression);
+    bool isValidCharacter(const vector<string> &expression);      // Checks if all the entries of a vector are either floats, digits, or operators, thus valid characters.
+    bool isFloat(string val);                                     // Helper that determines if an entry is a float.
+    bool isExpr(string val);                                      // Helper that determines if an entry is an operator.
+    bool isDigit(string val);                                     // Helper that determiens if an entry is a digit.
+    bool isBalancedParentheses(const vector<string> &expression); // Checks if the inputted expression contains balanced parentheses.
+    bool isMathValid(const vector<string> &expression);           // Checks if the vector contains enough operators to satisfy the Evaluate module, and is mathematically correct input.
+    vector<string> goodInput(const vector<string> &expression);   // Uses the helper functions to determine, overall, if the expression is good input, and gives back original vector if it is, otherwise goes to Error module.
 };
 
 #endif

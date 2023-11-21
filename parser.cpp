@@ -175,8 +175,14 @@ and verifies that expression does not have invalid consecutive operands.
             is_valid = false; // Returns false.
             return is_valid;
         }
+        // If there are two parenthesis that goes closed then open, then it is an error. There should be an operator between them. Ex.: (10)(20).
+        else if (isExpr(expression[i]) && isExpr(expression[i + 1]) && expression[i] == "(" && expression[i + 1] == ")")
+        {
+            is_valid = false; // Returns false.
+            return is_valid;
+        }
         // A valid expression should not have a closed parenthesis right after an operator. Ex of Bad Input.: 5*(3+).
-        else if (isExpr(expression[i]) && (expression[i] != ")") && (expression[i + 1] == ")"))
+        else if (isExpr(expression[i]) && (expression[i] == ")") && (expression[i + 1] == "("))
         {
             // std::cout << "condition 2";
             is_valid = false; // Returns false.

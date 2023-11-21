@@ -144,6 +144,21 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                     {
                         try
                         {
+                            if (operand2 == 0) // Modulos of 0 is like dividing by 0 and finding the remainder, which is not possible, so throw an error.
+                            {
+                                throw(operand2);
+                            }
+                        }
+                        catch (...) // Catches error.
+                        {
+                            Error er1;                    // Gives error to the Error Module.
+                            vector<string> error_message; // The Error Message is set to Division by Zero error.
+                            error_message.push_back("Division by Zero Error.");
+                            er1.errorMessage(error_message); // Error Module prints message.
+                            break;                           // Loop is broken as this is bad input.
+                        }
+                        try
+                        {
                             if (int(operand1) == operand1 && int(operand2) == operand2) // For modulos to work, both operands must be integers.
                             {
                                 long new_op1 = operand1;
@@ -254,6 +269,21 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                     {
                         try
                         {
+                            if (operand2 == 0) // Modulos of 0 is like dividing by 0 and finding the remainder, which is not possible, so throw an error.
+                            {
+                                throw(operand2);
+                            }
+                        }
+                        catch (...) // Catches error.
+                        {
+                            Error er1;                    // Gives error to the Error Module.
+                            vector<string> error_message; // The Error Message is set to Division by Zero error.
+                            error_message.push_back("Division by Zero Error.");
+                            er1.errorMessage(error_message); // Error Module prints message.
+                            break;                           // Loop is broken as this is bad input.
+                        }
+                        try
+                        {
                             if (int(operand1) == operand1 && int(operand2) == operand2) // For modulos to work, both operands must be integers.
                             {
                                 long new_op1 = operand1;
@@ -351,6 +381,21 @@ and evaluating any remainding values.
 
         else if (op == '%')
         {
+            try
+            {
+                if (operand2 == 0) // Modulos of 0 is like dividing by 0 and finding the remainder, which is not possible, so throw an error.
+                {
+                    throw(operand2);
+                }
+            }
+            catch (...) // Catches error.
+            {
+                Error er1;                    // Gives error to the Error Module.
+                vector<string> error_message; // The Error Message is set to Division by Zero error.
+                error_message.push_back("Division by Zero Error.");
+                er1.errorMessage(error_message); // Error Module prints message.
+                break;                           // Loop is broken as this is bad input.
+            }
             try
             {
                 if (int(operand1) == operand1 && int(operand2) == operand2) // For modulos to work, both operands must be integers.

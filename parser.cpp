@@ -219,7 +219,7 @@ Function that verifying whether the vector expression is good input using other 
     // If expression is mathematically incorrect , a corresponding error is added to badInput.
     if (math == false)
     {
-        badInput.push_back("Operands (or not enough operands) is in the wrong position.");
+        badInput.push_back("Missing or inplaced operands/operators.");
     }
 
     // If expression has is valid, the original expression is returned.

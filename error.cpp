@@ -1,6 +1,6 @@
 /*
 Name: error.cpp
-Authors: Sophia Jacob, Anna Linn, Navya Nittala
+Authors: Sophia Jacob, Anna Lin, Navya Nittala
 Date: 11/15/2023
 Last modified: 11/19/2023
 Purpose: Create Error Module that takes in a vector of Error Messages and prints out accordingly.

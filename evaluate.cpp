@@ -1,6 +1,6 @@
 /*
 Name: evaluate.cpp
-Authors: Sophia Jacob, Anna Linn, Navya Nittala
+Authors: Sophia Jacob, Anna Lin, Navya Nittala
 Date: 11/08/2023
 Last modified: 11/19/2023
 Purpose: Evaluate Module that returns the accurate output, through stack implementation, of an expression given by a vector.
@@ -52,6 +52,7 @@ Function determines the precedence of operators and returns corresponding intege
         return 0;
     }
 }
+
 
 double Evaluate::evaluateExpression(const vector<string> &expression)
 /*
@@ -183,19 +184,28 @@ Operator precedence is consider and final answer is returned.
                 // Starts evaluating expression until the operators in the operators stack is in order of precedence.
                 while (!operators.empty() && (getPrecedence(operators.top()) >= getPrecedence(val[0])))
                 {
-                    char op = operators.top();
-                    operators.pop();
-                    double operand2 = operands.top();
-                    operands.pop();
-                    double operand1 = operands.top();
-                    operands.pop();
+                    char op = operators.top(); // op is set to the operator at the top of the stack
+                    operators.pop(); // operator is then removed from stack
+                    double operand2 = operands.top(); // the right operand is set to the number at the top of the stack
+                    operands.pop(); // operand is then removed from stack
+                    double operand1 = operands.top(); // the left operand is set to the number at the top of the stack
+                    operands.pop(); // operand is then removed from stack
 
                     if (op == '+')
-                        operands.push(operand1 + operand2);
+                    {
+                        operands.push(operand1 + operand2); // performs addition and pushes the sum onto the stack
+                    }
+
                     else if (op == '-')
-                        operands.push(operand1 - operand2);
+                    {
+                        operands.push(operand1 - operand2); // performs substraction and pushes the difference onto the stack
+                    }
+
                     else if (op == '*')
-                        operands.push(operand1 * operand2);
+                    {
+                        operands.push(operand1 * operand2); // perfoms multiplication and pushes the product onto the stack
+                    }
+
                     else if (op == '/')
                     {
                         try
@@ -208,9 +218,10 @@ Operator precedence is consider and final answer is returned.
                             {
                                 double new_operand = operand2;
                                 double result = operand1 / new_operand;
-                                operands.push(result); // pushes the quotient onto the stack
+                                operands.push(result); // performs division and pushes the quotient onto the stack
                             }
                         }
+
                         catch (...)
                         {
                             Error er1;
@@ -220,7 +231,9 @@ Operator precedence is consider and final answer is returned.
                             break;
                         }
                     }
+                    
                     else if (op == '%')
+                    
                     {
                         long new_op1 = operand1;
                         long new_op2 = operand2;
@@ -237,6 +250,7 @@ Operator precedence is consider and final answer is returned.
         double result = evaluateRemainding(operands, operators);
         return result;
     }
+
     catch (...)
     {
         throw(expression);
@@ -277,13 +291,15 @@ double Evaluate::evaluateRemainding(stack<double> &operands, stack<char> &operat
                 {
                     throw(operand2);
                 }
+                
                 else
                 {
                     double new_operand = operand2;
                     double result = operand1 / new_operand;
-                    operands.push(result); // pushes the quotient onto the stack
+                    operands.push(result); // performs division and pushes the quotient onto the stack
                 }
             }
+
             catch (...)
             {
                 Error er1;
@@ -302,12 +318,16 @@ double Evaluate::evaluateRemainding(stack<double> &operands, stack<char> &operat
         }
 
         else if (op == '^')
+        {
             operands.push(pow(operand1, operand2)); // pushes the power onto the stack
+        }
     }
+
     if (operands.empty() == false)
     {
         return operands.top(); // Ending of calculating expression.
     }
+
     else
     {
         throw(false);

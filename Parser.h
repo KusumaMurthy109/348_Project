@@ -24,7 +24,7 @@ public:
     bool isDigit(string val); // helper
     bool isBalancedParentheses(const vector<string> &expression);
     vector<string> goodInput(const vector<string> &expression);
-    bool isValid(const vector<string> &expression);
+    bool isMathValid(const vector<string> &expression);
 };
 
 #endif

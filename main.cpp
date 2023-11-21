@@ -30,6 +30,7 @@ int main()
    Error error;                                                  // Makes an instance of the Error class.
    vector<string> expression = token.tokenizer_input(UserInput); // First, we want to tokenize the input expression, so we call to this function from the Tokens class.
    vector<string> parse = parser.goodInput(expression);          // Then, we want to pass this vector into the Parser class to see if what the user has inputted is good or bad input.
+   
    // If it is good input, then the Parser goodInput function will return the vector from Tokenizer unchanged.
    // If the expression is badInput, it will return a string vector with the corresponding reason why there is bad input.
    if (parse != expression) // If the vector returned from the Tokenizer module and the vector returned from the Parser module are different, then a bad input occured.
@@ -37,6 +38,7 @@ int main()
 
       error.errorMessage(parse); // Since there is an error in what the user has inputted, we will call to the Error Module and its function to print out the corresponding error message.
    }
+
    else // Otherwise, the input is valid, meaning that the Parser module returned the exact same vector as was given by Tokenizer.
    {
       try // Enter the try block to see if we can evaluate this expression.
@@ -44,6 +46,7 @@ int main()
          double result = ex1.evaluateExpression(expression); // Calls to the Evaluate Module and its evaluateExpression functio to make the user input into a stack and evaluate.
          cout << result << endl;                             // If the result is evaluated with no errors (such as a Division by Zero error), then it will print the result.
       }
+      
       catch (...) // If there is an error that occurs while evaluating the expression (like Division by Zero), then it is caught.
       {
          vector<string> er1; // We make a string vector that will have the error message, "Bad Input".

@@ -140,57 +140,33 @@ Function utilizes a stack to check to see if the parentheses in the vector expre
     return parentheses.empty();
 }
 
-vector<string> Parser::goodInput(const vector<string> &expression)
+
+bool Parser::isMathValid(const vector<string> &expression)
 /*
-Function ...
+Function that verifying whether the vector expression is mathematically correct.
+Verifies that expression does not begin and end with an operator,
+and verifies that expression does not have invalid consecutive operands.
 */
 
-{
-    bool character = isValidCharacter(expression);
-    bool parenthesis = isBalancedParentheses(expression);
-    bool valid = isValid(expression);
-    vector<string> badInput;
-
-    if (character == false)
-    {
-        badInput.push_back("Invalid Character Error.");
-    }
-    if (parenthesis == false)
-    {
-        badInput.push_back("Parenthesis Error.");
-    }
-    if (valid == false)
-    {
-        badInput.push_back("Operands (or not enough operands) is in the wrong position.");
-    }
-
-    if (character != false and parenthesis != false and valid != false)
-    {
-        return expression;
-    }
-    return badInput;
-}
-
-bool Parser::isValid(const vector<string> &expression)
 {
     // correct expression = "8 - (5 - 2)", "(((2 + 3))) + (((1 + 2)))", "+(-2) * (-3) – ((-4) / (+5))", "-(-(-3)) + (-4) + (+5)", "(+2) * (+3) - (-4) / (-5)"
     // incorrect expression = "* 5 + 2", "(((3 + 4) - 2) + (1)", "((4 * 2) + ( - ))", "5 (2 + 3)"
     int exprSize = expression.size();
-    bool valid = true;
+    bool is_valid = true;
 
-    // check if the beginning of the expressions starts with +,-,*,/,etc. and/or the ends with +,-,*,/, etc.
+    // Check if the beginning of the expressions starts with +,-,*,/,etc. and/or ends with +,-,*,/, etc.
     if (isExpr(expression[0]) && ((expression[0] != "+" && expression[0] != "-" && expression[0] != "(")))
     {
-        valid = false;
-        return valid;
+        is_valid = false;
+        return is_valid;
     }
     if (isExpr(expression.back()) && (expression.back() != ")"))
     {
-        valid = false;
-        return valid;
+        is_valid = false;
+        return is_valid;
     }
 
-    // checks for invalid consecutive operands and invalid expresions e.g. 5(1+3)
+    // Checks for invalid consecutive operands and invalid expresions e.g. 5(1+3)
     for (int i = 0; i < exprSize - 1; ++i)
     {
         // std::cout << "i="<< expression[i] <<"  i + 1=" << expression[i + 1]<< endl;
@@ -198,32 +174,71 @@ bool Parser::isValid(const vector<string> &expression)
         if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (!(expression[i + 1] == "+" || expression[i + 1] == "-" || expression[i + 1] == "(" || expression[i + 1] == ")" || expression[i] == ")")))
         {
             // std::cout << "condition 1";
-            valid = false;
-            return valid;
+            is_valid = false;
+            return is_valid;
         }
         else if (isExpr(expression[i]) && (expression[i] != ")") && (expression[i + 1] == ")"))
         {
             // std::cout << "condition 2";
-            valid = false;
-            return valid;
+            is_valid = false;
+            return is_valid;
         }
 
         else if (isDigit(expression[i]) && (expression[i + 1] == "(") && expression[i] != "-" && expression[i] != "+")
         {
             // std::cout << "condition 3";
-            valid = false;
-            return valid;
+            is_valid = false;
+            return is_valid;
         }
         else if (isExpr(expression[i]) && expression[i] != ")" && expression[i + 1] == ")")
         {
             // std::cout << "condition 4" << expression[i] << expression[i + 1];
-            valid = false;
-            return valid;
+            is_valid = false;
+            return is_valid;
         }
     }
-    return valid;
+    return is_valid;
 }
 
+
+vector<string> Parser::goodInput(const vector<string> &expression)
+/*
+Function that verifying whether the vector expression is good input using other helper fucnctions.
+*/
+
+{ 
+    bool character = isValidCharacter(expression); // determines if expression has valid characters
+    bool parenthesis = isBalancedParentheses(expression); // determines if expression has balanced parentheses
+    bool math = isMathValid(expression); // determines if expression is mathematically correct
+    vector<string> badInput; // initializes a string vector
+    
+    // If expression has invalid characters, a corresponding error is added to badInput.
+    if (character == false)
+    {
+        badInput.push_back("Invalid Character Error.");
+    }
+
+    // If expression has unbalanced parentheses, a corresponding error is added to badInput.
+    if (parenthesis == false)
+    {
+        badInput.push_back("Parentheses Error.");
+    }
+
+    // If expression is mathematically incorrect , a corresponding error is added to badInput.
+    if (math == false)
+    {
+        badInput.push_back("Operands (or not enough operands) is in the wrong position.");
+    }
+
+    // If expression has is valid, the original expression is returned.
+    if (character != false and parenthesis != false and math != false)
+    {
+        return expression;
+    }
+
+    // If expression is invalid, badInput is returned will all the error messages.
+    return badInput;
+}
 /*int main()
 {
    Parser ex1;

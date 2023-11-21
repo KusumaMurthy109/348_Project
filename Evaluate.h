@@ -1,6 +1,6 @@
 /*
 Name: Evaluate.h
-Authors: Sophia Jacob, Anna Linn, Navya Nittala
+Authors: Sophia Jacob, Anna Lin, Navya Nittala
 Date: 11/08/2023
 Last modified: 11/19/2023
 Purpose: Header File for Evaluate Module that returns the accurate output, through stack implementation, of an expression given by a vector.

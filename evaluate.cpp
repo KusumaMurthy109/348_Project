@@ -142,9 +142,27 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
 
                     else if (op == '%')
                     {
-                        long new_op1 = operand1;
-                        long new_op2 = operand2;
-                        operands.push(new_op1 % new_op2); // Pushes the remainder onto the stack.
+                        try
+                        {
+                            if (int(operand1) == operand1 && int(operand2) == operand2) // For modulos to work, both operands must be integers.
+                            {
+                                long new_op1 = operand1;
+                                long new_op2 = operand2;
+                                operands.push(new_op1 % new_op2); // Pushes the remainder onto the stack.
+                            }
+                            else
+                            {
+                                throw(operand1); // This means both are not integers, so throw error.
+                            }
+                        }
+                        catch (...) // Catches error.
+                        {
+                            Error er1;                    // Gives error to the Error Module.
+                            vector<string> error_message; // The Error Message is set to Modulos Integer error.
+                            error_message.push_back("Modulos Operator requires integers.");
+                            er1.errorMessage(error_message); // Error Module prints message.
+                            break;                           // Loop is broken as this is bad input.
+                        }
                     }
 
                     else if (op == '^')
@@ -233,11 +251,28 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                     }
 
                     else if (op == '%')
-
                     {
-                        long new_op1 = operand1;
-                        long new_op2 = operand2;
-                        operands.push(new_op1 % new_op2); // Pushes the remainder onto the stack.
+                        try
+                        {
+                            if (int(operand1) == operand1 && int(operand2) == operand2) // For modulos to work, both operands must be integers.
+                            {
+                                long new_op1 = operand1;
+                                long new_op2 = operand2;
+                                operands.push(new_op1 % new_op2); // Pushes the remainder onto the stack.
+                            }
+                            else
+                            {
+                                throw(operand1); // This means both are not integers, so throw error.
+                            }
+                        }
+                        catch (...) // Catches error.
+                        {
+                            Error er1;                    // Gives error to the Error Module.
+                            vector<string> error_message; // The Error Message is set to Modulos Integer error.
+                            error_message.push_back("Modulos Operator requires integers.");
+                            er1.errorMessage(error_message); // Error Module prints message.
+                            break;                           // Loop is broken as this is bad input.
+                        }
                     }
                     else if (op == '^')
                         operands.push(pow(operand1, operand2)); // Pushes the power onto the stack.
@@ -316,9 +351,27 @@ and evaluating any remainding values.
 
         else if (op == '%')
         {
-            long new_op1 = operand1;
-            long new_op2 = operand2;
-            operands.push(new_op1 % new_op2); // Pushes the remainder onto the stack.
+            try
+            {
+                if (int(operand1) == operand1 && int(operand2) == operand2) // For modulos to work, both operands must be integers.
+                {
+                    long new_op1 = operand1;
+                    long new_op2 = operand2;
+                    operands.push(new_op1 % new_op2); // Pushes the remainder onto the stack.
+                }
+                else
+                {
+                    throw(operand1); // This means both are not integers, so throw error.
+                }
+            }
+            catch (...) // Catches error.
+            {
+                Error er1;                    // Gives error to the Error Module.
+                vector<string> error_message; // The Error Message is set to Modulos Integer error.
+                error_message.push_back("Modulos Operator requires integers.");
+                er1.errorMessage(error_message); // Error Module prints message.
+                break;                           // Loop is broken as this is bad input.
+            }
         }
 
         else if (op == '^')

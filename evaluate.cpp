@@ -13,6 +13,7 @@ Purpose: Evaluate Module that returns the accurate output, through stack impleme
 #include <sstream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 #include "Evaluate.h"
 #include "Error.h"
 
@@ -136,7 +137,7 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                             vector<string> error_message; // The Error Message is set to Division by Zero error.
                             error_message.push_back("Division by Zero Error.");
                             er1.errorMessage(error_message); // Error Module prints error.
-                            break;                           // Loop is broken as this is bad input.
+                            exit(1);                         // Loop is broken as this is bad input.
                         }
                     }
 
@@ -155,7 +156,7 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                             vector<string> error_message; // The Error Message is set to Division by Zero error.
                             error_message.push_back("Division by Zero Error.");
                             er1.errorMessage(error_message); // Error Module prints message.
-                            break;                           // Loop is broken as this is bad input.
+                            exit(1);                         // Loop is broken as this is bad input.
                         }
                         try
                         {
@@ -176,7 +177,7 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                             vector<string> error_message; // The Error Message is set to Modulos Integer error.
                             error_message.push_back("Modulos Operator requires integers.");
                             er1.errorMessage(error_message); // Error Module prints message.
-                            break;                           // Loop is broken as this is bad input.
+                            exit(1);                         // Loop is broken as this is bad input.
                         }
                     }
 
@@ -261,7 +262,7 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                             vector<string> error_message; // The Error Message is set to Division by Zero error.
                             error_message.push_back("Division by Zero Error.");
                             er1.errorMessage(error_message); // Error Module prints message.
-                            break;                           // Loop is broken as this is bad input.
+                            exit(1);                         // Loop is broken as this is bad input.
                         }
                     }
 
@@ -280,7 +281,7 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                             vector<string> error_message; // The Error Message is set to Division by Zero error.
                             error_message.push_back("Division by Zero Error.");
                             er1.errorMessage(error_message); // Error Module prints message.
-                            break;                           // Loop is broken as this is bad input.
+                            exit(1);                         // Loop is broken as this is bad input.
                         }
                         try
                         {
@@ -301,7 +302,7 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                             vector<string> error_message; // The Error Message is set to Modulos Integer error.
                             error_message.push_back("Modulos Operator requires integers.");
                             er1.errorMessage(error_message); // Error Module prints message.
-                            break;                           // Loop is broken as this is bad input.
+                            exit(1);                         // Loop is broken as this is bad input.
                         }
                     }
                     else if (op == '^')
@@ -375,7 +376,7 @@ and evaluating any remainding values.
                 vector<string> error_message; // The Error Message is set to Division by Zero error.
                 error_message.push_back("Division by Zero Error.");
                 er1.errorMessage(error_message); // Error Module prints message.
-                break;                           // Loop is broken as this is bad input.
+                exit(1);                         // Loop is broken as this is bad input.
             }
         }
 
@@ -394,7 +395,7 @@ and evaluating any remainding values.
                 vector<string> error_message; // The Error Message is set to Division by Zero error.
                 error_message.push_back("Division by Zero Error.");
                 er1.errorMessage(error_message); // Error Module prints message.
-                break;                           // Loop is broken as this is bad input.
+                exit(1);                         // Loop is broken as this is bad input.
             }
             try
             {
@@ -415,7 +416,7 @@ and evaluating any remainding values.
                 vector<string> error_message; // The Error Message is set to Modulos Integer error.
                 error_message.push_back("Modulos Operator requires integers.");
                 er1.errorMessage(error_message); // Error Module prints message.
-                break;                           // Loop is broken as this is bad input.
+                exit(1);                         // Loop is broken as this is bad input.
             }
         }
 

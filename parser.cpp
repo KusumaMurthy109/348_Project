@@ -169,7 +169,7 @@ and verifies that expression does not have invalid consecutive operands.
     {
         // std::cout << "i="<< expression[i] <<"  i + 1=" << expression[i + 1]<< endl;
         // If there are two consecutive operators together and one of them is not just a +,- sign or parenthesis, then it is invalid. Ex.: 5*^3.
-        if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (!(expression[i + 1] == "+" || expression[i + 1] == "-" || expression[i + 1] == "(" || expression[i + 1] == ")" || expression[i] == ")")))
+        if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (!(expression[i + 1] == "+" || expression[i + 1] == "-" || expression[i + 1] == "(" || expression[i] == ")")))
         {
             // std::cout << "condition 1";
             is_valid = false; // Returns false.

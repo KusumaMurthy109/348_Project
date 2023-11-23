@@ -320,6 +320,7 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
     catch (...) // Catches any error.
     {
         throw(expression); // Throws the expression if there was an error encountered when evaluating the expression.
+        exit(1);
     }
 }
 

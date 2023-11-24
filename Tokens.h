@@ -18,7 +18,7 @@ using namespace std;
 class Tokens
 {
 public:
-    vector<string> tokenizer_input(const string &UserInput);
+    vector<string> tokenizerInput(const string &UserInput);
 };
 
 #endif

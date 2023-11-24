@@ -13,13 +13,13 @@ Purpose: To create a Tokenizer Module that takes in the user's string expression
 
 using namespace std;
 
-vector<string> Tokens::tokenizer_input(const string &UserInput)
+vector<string> Tokens::tokenizerInput(const string &UserInput)
 /*
 This function takes in user's expression as a string and separates it into a vector expression that is then passed to the Parser Module.
 */
 
 {
-    vector<string> tokenizer_vector; // Initializes a vector string named tokenizer_vector that will be returned after separation.
+    vector<string> tokenizerVector;                       // Initializes a vector string named tokenizer_vector that will be returned after separation.
     for (unsigned int i = 0; i < UserInput.length(); i++) // Iterates through each index of the string (character) one by one.
     {
 
@@ -40,14 +40,14 @@ This function takes in user's expression as a string and separates it into a vec
                     k++; // Increment k.
                 }
 
-                tokenizer_vector.push_back(UserInput.substr(i, j)); // Add this substring of number to the vector.
+                tokenizerVector.push_back(UserInput.substr(i, j)); // Add this substring of number to the vector.
 
                 i = i + j - 1; // Set i to the current index after the substring.
             }
 
             else
             {
-                tokenizer_vector.push_back(UserInput.substr(i, 1)); // If it is not a number more than one digit, add it to the vector. 
+                tokenizerVector.push_back(UserInput.substr(i, 1)); // If it is not a number more than one digit, add it to the vector.
             }
         }
 
@@ -69,14 +69,14 @@ This function takes in user's expression as a string and separates it into a vec
                     k++; // Increment k.
                 }
 
-                tokenizer_vector.push_back(UserInput.substr(i, j)); // Add this substring of number to the vector.
+                tokenizerVector.push_back(UserInput.substr(i, j)); // Add this substring of number to the vector.
 
                 i = i + j - 1; // Set i to the current index after substring.
             }
 
             else
             {
-                tokenizer_vector.push_back(UserInput.substr(i, 1)); // If it is not a number more than one digit, add it to the vector. 
+                tokenizerVector.push_back(UserInput.substr(i, 1)); // If it is not a number more than one digit, add it to the vector.
             }
         }
 
@@ -85,11 +85,11 @@ This function takes in user's expression as a string and separates it into a vec
         {
             if ((UserInput[i + 1] != '\0') && (UserInput[i + 1] == '-' || UserInput[i + 1] == '+')) // Checks for '-' and '+' in the following index.
             {
-                tokenizer_vector.push_back(UserInput.substr(i, 1)); // Add the parentheses to the vector.
+                tokenizerVector.push_back(UserInput.substr(i, 1));                                                                                                                                                                                                                                                                                         // Add the parentheses to the vector.
                 if ((UserInput[i + 2] != '\0') && (UserInput[i + 2] == '0' || UserInput[i + 2] == '1' || UserInput[i + 2] == '2' || UserInput[i + 2] == '3' || UserInput[i + 2] == '4' || UserInput[i + 2] == '5' || UserInput[i + 2] == '6' || UserInput[i + 2] == '7' || UserInput[i + 2] == '8' || UserInput[i + 2] == '9' || UserInput[i + 2] == '.')) // Checks if there is a number (digit or a decimal).
                 {
-                    int j = 1;      // Initialize j to 1.
-                    int k = i + 2;  // Initialize k to i + 2.
+                    int j = 1;     // Initialize j to 1.
+                    int k = i + 2; // Initialize k to i + 2.
                     // Checks if the current k is a digit or a decimal and keep track of the number string length.
                     while ((UserInput[k] != '\0') && (UserInput[k] == '0' ||
                                                       UserInput[k] == '1' || UserInput[k] == '2' || UserInput[k] == '3' ||
@@ -100,7 +100,7 @@ This function takes in user's expression as a string and separates it into a vec
                         k++; // Increment k.
                     }
 
-                    tokenizer_vector.push_back(UserInput.substr(i + 1, j)); // Add this substring of number to the vector.
+                    tokenizerVector.push_back(UserInput.substr(i + 1, j)); // Add this substring of number to the vector.
 
                     i = i + j; // Set i to the current index after substring.
                 }
@@ -108,7 +108,7 @@ This function takes in user's expression as a string and separates it into a vec
 
             else
             {
-                tokenizer_vector.push_back(UserInput.substr(i, 1)); // If it is not a number following, add the parentheses to the vector. 
+                tokenizerVector.push_back(UserInput.substr(i, 1)); // If it is not a number following, add the parentheses to the vector.
             }
         }
 
@@ -118,11 +118,11 @@ This function takes in user's expression as a string and separates it into a vec
         {
             if ((UserInput[i + 1] != '\0') && (UserInput[i + 1] == '-' || UserInput[i + 1] == '+')) // Checks if the next index is a '-' or '+'.
             {
-                tokenizer_vector.push_back(UserInput.substr(i, 1)); // Add the operand to the vector.
+                tokenizerVector.push_back(UserInput.substr(i, 1));                                                                                                                                                                                                                                                                                         // Add the operand to the vector.
                 if ((UserInput[i + 2] != '\0') && (UserInput[i + 2] == '0' || UserInput[i + 2] == '1' || UserInput[i + 2] == '2' || UserInput[i + 2] == '3' || UserInput[i + 2] == '4' || UserInput[i + 2] == '5' || UserInput[i + 2] == '6' || UserInput[i + 2] == '7' || UserInput[i + 2] == '8' || UserInput[i + 2] == '9' || UserInput[i + 2] == '.')) // Checks if there is a number (digit or a decimal).
                 {
-                    int j = 1;      // Initialize j to 1.
-                    int k = i + 2;  // Initialize k to i + 2.
+                    int j = 1;     // Initialize j to 1.
+                    int k = i + 2; // Initialize k to i + 2.
                     // Checks if the current k is a digit or a decimal and keep track of the number string length.
                     while ((UserInput[k] != '\0') && (UserInput[k] == '0' ||
                                                       UserInput[k] == '1' || UserInput[k] == '2' || UserInput[k] == '3' ||
@@ -133,7 +133,7 @@ This function takes in user's expression as a string and separates it into a vec
                         k++; // Increment k.
                     }
 
-                    tokenizer_vector.push_back(UserInput.substr(i + 1, j)); // Add this substring of number to the vector.
+                    tokenizerVector.push_back(UserInput.substr(i + 1, j)); // Add this substring of number to the vector.
 
                     i = i + j; // Set i to the current index after substring.
                 }
@@ -143,23 +143,23 @@ This function takes in user's expression as a string and separates it into a vec
 
                     if (UserInput[i + 1] == '-') // Checks if the next index is '-'.
                     {
-                        tokenizer_vector.push_back("-1"); // If so, add "-1" to the vector.
-                        tokenizer_vector.push_back("*");  // Add "*" to the vector.
-                        i = i + 1; // Set i to the current, new index after accounting for the '-'.
+                        tokenizerVector.push_back("-1"); // If so, add "-1" to the vector.
+                        tokenizerVector.push_back("*");  // Add "*" to the vector.
+                        i = i + 1;                       // Set i to the current, new index after accounting for the '-'.
                     }
                 }
             }
 
             else
             {
-                tokenizer_vector.push_back(UserInput.substr(i, 1)); // If it is not another operand following, add the operand to the vector. 
+                tokenizerVector.push_back(UserInput.substr(i, 1)); // If it is not another operand following, add the operand to the vector.
             }
         }
 
         // Appends to the vector if all the above statments is false.
         else
         {
-            tokenizer_vector.push_back(UserInput.substr(i, 1)); // Add the index of the string to the vector.
+            tokenizerVector.push_back(UserInput.substr(i, 1)); // Add the index of the string to the vector.
         }
     }
 
@@ -170,5 +170,5 @@ This function takes in user's expression as a string and separates it into a vec
        }
    */
 
-    return tokenizer_vector; // After iterating through the user string, return the vector.
+    return tokenizerVector; // After iterating through the user string, return the vector.
 }

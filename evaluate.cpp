@@ -209,7 +209,11 @@ Operator precedence and Parenthesis Precedence is considered and final answer is
                 operators.push('*'); // Push a multiplication sign to the operator stack.
                 index++;             // Moves on to the next index.
             }
-
+            // Case: This checks to see if there is a + sign sandwiched between two open parenthesis like: (+(+(3+2))), which is the equivalent of just saying the expression.
+            else if (isOperator(val) && index != 0 && val == "+" && expression[index - 1] == "(" and expression[index + 1] == "(")
+            {
+                index++; // Moves on to the next index.
+            }
             // Case: If the value is an operator, then we can add it to the operator stack and start evaluating based on precedence.
             else if (isOperator(val))
             {

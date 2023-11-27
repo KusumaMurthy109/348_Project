@@ -28,7 +28,7 @@ int main()
    Evaluate ex1;                                                 // Makes an instance of the Evaluate class.
    Parser parser;                                                // Makes an instance of the Parser class.
    Error error;                                                  // Makes an instance of the Error class.
-   vector<string> expression = token.tokenizer_input(UserInput); // First, we want to tokenize the input expression, so we call to this function from the Tokens class.
+   vector<string> expression = token.tokenizerInput(UserInput); // First, we want to tokenize the input expression, so we call to this function from the Tokens class.
    vector<string> parse = parser.goodInput(expression);          // Then, we want to pass this vector into the Parser class to see if what the user has inputted is good or bad input.
    
    // If it is good input, then the Parser goodInput function will return the vector from Tokenizer unchanged.

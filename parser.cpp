@@ -169,7 +169,7 @@ and verifies that expression does not have invalid consecutive operands.
     {
         // std::cout << "i="<< expression[i] <<"  i + 1=" << expression[i + 1]<< endl;
         // If there are two consecutive operators together and one of them is not just a +,- sign or parenthesis, then it is invalid. Ex.: 5*^3.
-        if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (!(expression[i + 1] == "+" || expression[i + 1] == "-" || expression[i + 1] == "(" || expression[i + 1] == ")" || expression[i] == ")")))
+        if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (!(expression[i + 1] == "+" || expression[i + 1] == "-" || expression[i + 1] == "(" || expression[i] == ")")))
         {
             // std::cout << "condition 1";
             is_valid = false; // Returns false.
@@ -225,7 +225,7 @@ Function that verifying whether the vector expression is good input using other 
     // If expression is mathematically incorrect , a corresponding error is added to badInput.
     if (math == false)
     {
-        badInput.push_back("Missing or inplaced operands/operators.");
+        badInput.push_back("Missing or misplaced operands/operators.");
     }
 
     // If expression has is valid, the original expression is returned.

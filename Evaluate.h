@@ -18,7 +18,7 @@ using namespace std;
 class Evaluate
 {
 public:
-  vector<char> expression; // Input vector that needs to be evaluated.
+  vector<char> expression; // Input vector expression that needs to be evaluated.
 
   // private:
   bool isOperator(string c);                                                  // Checks if the character is an operator: +, -, *, /, %, ^.

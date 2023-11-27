@@ -181,6 +181,12 @@ and verifies that expression does not have invalid consecutive operands.
             is_valid = false; // Returns false.
             return is_valid;
         }
+        // If there are two consecutive unary signs together, this is bad input, such as 5----2, or 5+-2, or 5^(--2).
+        else if (isExpr(expression[i]) && isExpr(expression[i + 1]) && (expression[i] == "+" || expression[i] == "-") && (expression[i + 1] == "+" || expression[i + 1] == "-"))
+        {
+            is_valid = false;
+            return is_valid;
+        }
         // A valid expression should not have a closed parenthesis right after an operator. Ex of Bad Input.: 5*(3+).
         else if (isExpr(expression[i]) && (expression[i] == ")") && (expression[i + 1] == "("))
         {

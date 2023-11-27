@@ -23,14 +23,32 @@ int main()
    cout << "Enter you expression: ";                                                                // Asks the user to input their expression.
    getline(cin, UserInput);                                                                         // Stores whatever the user inputs into the command line in the UserInput variable.
    UserInput.erase(std::remove_if(UserInput.begin(), UserInput.end(), ::isspace), UserInput.end()); // Erases all unnecessary spaces in the whole string the user inputted.
-
-   Tokens token;                                                 // Makes an instance of the Tokens class.
-   Evaluate ex1;                                                 // Makes an instance of the Evaluate class.
-   Parser parser;                                                // Makes an instance of the Parser class.
-   Error error;                                                  // Makes an instance of the Error class.
+   try
+   {
+      for (unsigned int i = 0; i < UserInput.size(); i++)
+      {
+         if ((UserInput[i] == '+' || UserInput[i] == '-') && (UserInput[i + 1] == '+' || UserInput[i + 1] == '-'))
+         {
+            throw(UserInput);
+            break;
+         }
+      }
+   }
+   catch (...)
+   {
+      Error error_check;
+      vector<string> err;
+      err.push_back("Bad Input. Unary Operators must be separated by parenthesis.");
+      error_check.errorMessage(err);
+      exit(1);
+   }
+   Tokens token;                                                // Makes an instance of the Tokens class.
+   Evaluate ex1;                                                // Makes an instance of the Evaluate class.
+   Parser parser;                                               // Makes an instance of the Parser class.
+   Error error;                                                 // Makes an instance of the Error class.
    vector<string> expression = token.tokenizerInput(UserInput); // First, we want to tokenize the input expression, so we call to this function from the Tokens class.
-   vector<string> parse = parser.goodInput(expression);          // Then, we want to pass this vector into the Parser class to see if what the user has inputted is good or bad input.
-   
+   vector<string> parse = parser.goodInput(expression);         // Then, we want to pass this vector into the Parser class to see if what the user has inputted is good or bad input.
+
    // If it is good input, then the Parser goodInput function will return the vector from Tokenizer unchanged.
    // If the expression is badInput, it will return a string vector with the corresponding reason why there is bad input.
    if (parse != expression) // If the vector returned from the Tokenizer module and the vector returned from the Parser module are different, then a bad input occured.
@@ -46,7 +64,7 @@ int main()
          double result = ex1.evaluateExpression(expression); // Calls to the Evaluate Module and its evaluateExpression functio to make the user input into a stack and evaluate.
          cout << result << endl;                             // If the result is evaluated with no errors (such as a Division by Zero error), then it will print the result.
       }
-      
+
       catch (...) // If there is an error that occurs while evaluating the expression (like Division by Zero), then it is caught.
       {
          vector<string> er1; // We make a string vector that will have the error message, "Bad Input".

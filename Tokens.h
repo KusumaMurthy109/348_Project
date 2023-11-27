@@ -18,7 +18,7 @@ using namespace std;
 class Tokens
 {
 public:
-    vector<string> tokenizer_input(const string &UserInput);
+    vector<string> tokenizer_input(const string &UserInput); // Parsers through user input expression and converts it to a vector of strings.
 };
 
 #endif

@@ -20,10 +20,10 @@ using namespace std;
 int main()
 {
    string UserInput;                                                                                // This is the variable in which we will store the user's expression.
-   cout << "Enter your expression: ";                                                                // Asks the user to input their expression.
+   cout << "Enter your expression: ";                                                               // Asks the user to input their expression.
    getline(cin, UserInput);                                                                         // Stores whatever the user inputs into the command line in the UserInput variable.
    UserInput.erase(std::remove_if(UserInput.begin(), UserInput.end(), ::isspace), UserInput.end()); // Erases all unnecessary spaces in the whole string the user inputted.
-   
+
    // The user cannot input an empty string to evaluate, so this try-catch will check if they have given something other than an empty string
    // before it goes to validate the input and evaluate it.
    try
@@ -33,13 +33,13 @@ int main()
          throw(UserInput); // If so, it will throw an error.
       }
    }
-   catch(...) // Catches the error.
+   catch (...) // Catches the error.
    {
       Error error_check; // Gives control to Error-Handling Module.
       vector<string> err;
       err.push_back("No Expression Given."); // Gives the type of Error.
-      error_check.errorMessage(err); // Error Module prints and exits code gracefully.
-      exit(1); // Exit since this isn't valid input.
+      error_check.errorMessage(err);         // Error Module prints and exits code gracefully.
+      exit(1);                               // Exit since this isn't valid input.
    }
    // Before the expression can be validated as good or bad input and then evaluated, we need to make sure that unary operators
    // are used correctly. This means there cannot be consecutive unary operators together without parentheses.
@@ -51,7 +51,7 @@ int main()
          if ((UserInput[i] == '+' || UserInput[i] == '-') && (UserInput[i + 1] == '+' || UserInput[i + 1] == '-')) // Checks if there are two consecutive unary operators together.
          {
             throw(UserInput); // Throws an Error if so.
-            break; // Breaks the for loop because an instance of this bad input is found.
+            break;            // Breaks the for loop because an instance of this bad input is found.
          }
       }
    }
@@ -61,8 +61,8 @@ int main()
       Error error_check; // Gives control to Error-Handling Module.
       vector<string> err;
       err.push_back("Bad Input. Unary Operators must be separated by parentheses."); // Gives the type of error.
-      error_check.errorMessage(err); // Error Module prints and exits code gracefully.
-      exit(1); // Exits the code since the error has been found with the user's input.
+      error_check.errorMessage(err);                                                 // Error Module prints and exits code gracefully.
+      exit(1);                                                                       // Exits the code since the error has been found with the user's input.
    }
 
    Tokens token;                                                // Makes an instance of the Tokens class.

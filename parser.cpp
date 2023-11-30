@@ -231,7 +231,7 @@ Function that verifying whether the vector expression is good input using other 
     // If expression is mathematically incorrect , a corresponding error is added to badInput.
     if (math == false)
     {
-        badInput.push_back("Missing or misplaced operands/operators.");
+        badInput.push_back("Missing or Misplaced Operands/Operators.");
     }
 
     // If expression has is valid, the original expression is returned.
@@ -243,16 +243,3 @@ Function that verifying whether the vector expression is good input using other 
     // If expression is invalid, badInput is returned will all the error messages.
     return badInput;
 }
-/*int main()
-{
-   Parser ex1;
-   bool result = ex1.isValid({"(", "(", "(", "3", "+4", ")", "-2", ")", ")"});
-   if (result)
-   {
-       cout << "true." << endl;
-   }
-   else
-   {
-       cout << "false" << endl;
-   }
-}*/

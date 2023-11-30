@@ -38,7 +38,7 @@ int main()
    {
       Error error_check;
       vector<string> err;
-      err.push_back("Bad Input. Unary Operators must be separated by parenthesis.");
+      err.push_back("Bad Input. Unary Operators must be separated by parentheses.");
       error_check.errorMessage(err);
       exit(1);
    }

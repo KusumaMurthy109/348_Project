@@ -19,8 +19,6 @@ class Evaluate
 {
 public:
   vector<char> expression; // Input vector expression that needs to be evaluated.
-
-  // private:
   bool isOperator(string c);                                                  // Checks if the character is an operator: +, -, *, /, %, ^.
   int getPrecedence(char op);                                                 // Returns which operator has a higher order of precedence (3 is highest).
   double evaluateExpression(const vector<string> &expression);                // Makes operators and operands into Stacks to represent expression's Structure and starts evaluating.
